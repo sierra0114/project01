@@ -1,0 +1,7 @@
+.el-icon-user-solid:before {
+    content: "\e7a5";
+    color: black;
+}
+*{
+    background-color: #fff;
+}
