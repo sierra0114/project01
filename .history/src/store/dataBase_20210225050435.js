@@ -1,16 +1,12 @@
 // --------------------------------        已完成         ------------------------------------
 /// /////////////////////           数据库-开始           ///////////////////////////////
 //
-// 函数名                                         功能
-// dataBase()                           *   初始化，容器函数 
-//                                      |
-// openDatabase()                       *   打开数据库请求，在异步的事件处理函数中获取数据库对象 db 和存储库对象 info 
-//                                    / |
-// validate(db)                      /  *   检验上一步获取的 db 对象，和 info 对象 
-//                                  /   |
-// operation (db)                  /    *   开启事务，操作数据------>>>结束
-//                                /
-// newObjectStore (objStore, db) *          创建info存储库，使用了 自增&&自定义 key，创建索引
+// 函数名                           功能
+// dataBase()                       初始化，容器函数 ->openDatabase()
+// openDatabase()                   打开数据库请求，在异步的事件处理函数中获取数据库对象 db ->validate(db)
+// validate(db)                     检验上一步获取的 
+// operation (db)
+// newObjectStore (objStore, db)
 //
 // ++info对象：{color: ''
 //              mainText: ''      --required
