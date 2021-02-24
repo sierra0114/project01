@@ -34,13 +34,12 @@
             label=" 邮   箱："
             class="input"
             aria-placeholder="请输入邮箱"
-            prop="email"
           >
             <el-autocomplete
               class="inline-input"
               v-model="form1.email"
               :fetch-suggestions="querySearch"
-              :trigger-on-focus="false"
+              :trigger-on-focus="true"
               @select="handleSelect"
             ></el-autocomplete>
           </el-form-item>
@@ -98,7 +97,7 @@
               autocomplete="off"
             ></el-input>
           </el-form-item>
-          <el-form-item label="新密码" prop="newpass">
+          <el-form-item label="新密码" prop="pass">
             <el-input
               type="password"
               v-model="form2.newpass"
@@ -137,48 +136,34 @@ export default {
       } else if (!value === this.user.password) {
         callback(new Error("密码错误！"));
       } else {
-        this.$refs.form2.validateField("newpass");
         callback();
       }
     };
     var validateNewPass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入新密码"));
-      } else if (value === this.form2.oldpass) {
-        this.$refs.form2.validateField("checkPass");
-        callback(new Error("新密码与旧密码相同！"));
       } else {
-        this.$refs.form2.validateField("checkPass");
+        if (this.form2.checkPass !== "") {
+          this.$refs.form2.validateField("checkPass");
+        }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.form2.newpass) {
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {
       let reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
       if (value === "") {
-        console.log(value);
         callback();
-      } else if (!reg.test(value)) {
-        console.log(value);
+      } else if (reg.test(value)) {
         callback(new Error("邮箱格式错误！"));
-      } else {
-        callback();
       }
     };
     return {
@@ -192,9 +177,9 @@ export default {
         gender: "",
         birthday: "",
       },
-      rules1: {
+      rules2: {
         nickname: [{}],
-        email: [{ validator: validateEmail, trigger: "blur" }],
+        email: [{ validator: validateEmail }],
       },
       form2: {
         //参与密码检验的变量
@@ -202,7 +187,7 @@ export default {
         newpass: "",
         checkPass: "",
       },
-      rules2: {
+      rules1: {
         //密码检验规则
         oldpass: [{ validator: validateOldPass, trigger: "blur" }],
         newpass: [{ validator: validateNewPass, trigger: "blur" }],
@@ -217,7 +202,7 @@ export default {
         "el-icon-lollipop",
         "el-icon-coffee",
       ],
-      restaurants: [], //?
+      restaurants: ['111','222'], //?
     };
   },
   methods: {
@@ -263,7 +248,6 @@ export default {
         { value: "@126.com" },
         { value: "@163.com" },
         { value: "@sohu.com" },
-        { value: "@gmail.com" },
       ];
     },
     handleSelect() {},
@@ -303,9 +287,6 @@ export default {
         }
       };
     };
-  },
-  mounted() {
-    this.restaurants = this.loadAll();
   },
   destroyed() {
     // alert("注册销毁");

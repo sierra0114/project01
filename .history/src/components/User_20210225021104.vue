@@ -160,8 +160,7 @@ export default {
       } else {
         console.log(this.form2.newpass);
         console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
+        if (!this.form2.newpass == this.form2.checkPass) {
           callback(new Error("两次输入新密码不一致!"));
           alert("333");
         }

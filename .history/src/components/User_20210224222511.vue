@@ -132,6 +132,7 @@ export default {
   name: "User",
   data() {
     var validateOldPass = (rule, value, callback) => {
+      alert("111");
       if (value === "") {
         callback(new Error("请输入旧密码"));
       } else if (!value === this.user.password) {
@@ -142,6 +143,7 @@ export default {
       }
     };
     var validateNewPass = (rule, value, callback) => {
+      alert("222");
       if (value === "") {
         callback(new Error("请输入新密码"));
       } else if (value === this.form2.oldpass) {
@@ -153,20 +155,14 @@ export default {
       }
     };
     var validatePass2 = (rule, value, callback) => {
+      alert("333");
+
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.$refs.form2.newpass) {
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {

@@ -131,7 +131,7 @@ import router from "../router";
 export default {
   name: "User",
   data() {
-    var validateOldPass = (rule, value, callback) => {
+    var validateOldPass = (rule, value, callback) => {alert("111");
       if (value === "") {
         callback(new Error("请输入旧密码"));
       } else if (!value === this.user.password) {
@@ -145,28 +145,24 @@ export default {
       if (value === "") {
         callback(new Error("请输入新密码"));
       } else if (value === this.form2.oldpass) {
+        
         this.$refs.form2.validateField("checkPass");
         callback(new Error("新密码与旧密码相同！"));
       } else {
+        alert("222");
         this.$refs.form2.validateField("checkPass");
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
+     
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.$refs.form2.newpass) {
+         alert("333");
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {

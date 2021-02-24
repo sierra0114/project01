@@ -137,7 +137,6 @@ export default {
       } else if (!value === this.user.password) {
         callback(new Error("密码错误！"));
       } else {
-        this.$refs.form2.validateField("newpass");
         callback();
       }
     };
@@ -148,25 +147,19 @@ export default {
         this.$refs.form2.validateField("checkPass");
         callback(new Error("新密码与旧密码相同！"));
       } else {
-        this.$refs.form2.validateField("checkPass");
+        if (this.form2.checkPass !== "") {
+          this.$refs.form2.validateField("checkPass");
+        }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.form2.newpass) {
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {

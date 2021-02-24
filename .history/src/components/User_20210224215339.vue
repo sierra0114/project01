@@ -34,7 +34,6 @@
             label=" 邮   箱："
             class="input"
             aria-placeholder="请输入邮箱"
-            prop="email"
           >
             <el-autocomplete
               class="inline-input"
@@ -98,7 +97,7 @@
               autocomplete="off"
             ></el-input>
           </el-form-item>
-          <el-form-item label="新密码" prop="newpass">
+          <el-form-item label="新密码" prop="pass">
             <el-input
               type="password"
               v-model="form2.newpass"
@@ -137,47 +136,41 @@ export default {
       } else if (!value === this.user.password) {
         callback(new Error("密码错误！"));
       } else {
-        this.$refs.form2.validateField("newpass");
         callback();
       }
     };
     var validateNewPass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入新密码"));
-      } else if (value === this.form2.oldpass) {
-        this.$refs.form2.validateField("checkPass");
-        callback(new Error("新密码与旧密码相同！"));
       } else {
-        this.$refs.form2.validateField("checkPass");
+        if (this.form2.checkPass !== "") {
+          this.$refs.form2.validateField("checkPass");
+        }
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    var validatePass2 = (rule, value, callback) => {        alert("1");
+
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.form2.newpass) {
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {
+      alert("1");
+
       let reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
       if (value === "") {
-        console.log(value);
+        alert("1");
         callback();
-      } else if (!reg.test(value)) {
-        console.log(value);
+      } else if (reg.test(value)) {
+        alert("2");
         callback(new Error("邮箱格式错误！"));
       } else {
+        alert("3");
         callback();
       }
     };

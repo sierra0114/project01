@@ -34,11 +34,10 @@
             label=" 邮   箱："
             class="input"
             aria-placeholder="请输入邮箱"
-            prop="email"
           >
             <el-autocomplete
               class="inline-input"
-              v-model="form1.email"
+              v-model="form.email"
               :fetch-suggestions="querySearch"
               :trigger-on-focus="false"
               @select="handleSelect"
@@ -70,8 +69,8 @@
         <template slot="title"
           ><b> 账户信息 <i class="header-icon el-icon-info"></i></b> </template
         ><el-form label-width="100px" size="small" class="form">
-          <el-form-item label="用户名：">{{ user.name }}</el-form-item>
-          <el-form-item label="邮箱：">{{ user.email }}</el-form-item>
+          <el-form-item label="用户名：">{{ form1.name }}</el-form-item>
+          <el-form-item label="邮箱：">{{ form1.email }}</el-form-item>
           <el-form-item label="注册时间：">{{ user.time }}</el-form-item>
           <el-form-item class="button">
             <el-button type="danger">删除本账号</el-button></el-form-item
@@ -98,7 +97,7 @@
               autocomplete="off"
             ></el-input>
           </el-form-item>
-          <el-form-item label="新密码" prop="newpass">
+          <el-form-item label="新密码" prop="pass">
             <el-input
               type="password"
               v-model="form2.newpass"
@@ -137,48 +136,34 @@ export default {
       } else if (!value === this.user.password) {
         callback(new Error("密码错误！"));
       } else {
-        this.$refs.form2.validateField("newpass");
         callback();
       }
     };
     var validateNewPass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入新密码"));
-      } else if (value === this.form2.oldpass) {
-        this.$refs.form2.validateField("checkPass");
-        callback(new Error("新密码与旧密码相同！"));
       } else {
-        this.$refs.form2.validateField("checkPass");
+        if (this.form2.checkPass !== "") {
+          this.$refs.form2.validateField("checkPass");
+        }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (!value === this.form2.newpass) {
         callback(new Error("两次输入新密码不一致!"));
       } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
         callback();
-        alert("444");
       }
     };
     var validateEmail = (rule, value, callback) => {
       let reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
       if (value === "") {
-        console.log(value);
         callback();
-      } else if (!reg.test(value)) {
-        console.log(value);
+      } else if (reg.test(value)) {
         callback(new Error("邮箱格式错误！"));
-      } else {
-        callback();
       }
     };
     return {
@@ -192,9 +177,9 @@ export default {
         gender: "",
         birthday: "",
       },
-      rules1: {
+      rules2: {
         nickname: [{}],
-        email: [{ validator: validateEmail, trigger: "blur" }],
+        email: [{ validator: validateEmail }],
       },
       form2: {
         //参与密码检验的变量
@@ -202,7 +187,7 @@ export default {
         newpass: "",
         checkPass: "",
       },
-      rules2: {
+      rules1: {
         //密码检验规则
         oldpass: [{ validator: validateOldPass, trigger: "blur" }],
         newpass: [{ validator: validateNewPass, trigger: "blur" }],
@@ -217,7 +202,6 @@ export default {
         "el-icon-lollipop",
         "el-icon-coffee",
       ],
-      restaurants: [], //?
     };
   },
   methods: {
@@ -227,14 +211,14 @@ export default {
     changeimgto(item, index) {
       //更改头像class
       console.log(index);
-      this.form1.image = item;
+      this.form.image = item;
     },
     clear1() {
-      this.form1.image = "";
-      this.form1.email = "";
-      this.form1.nickname = "";
-      this.form1.birthday = {};
-      this.form1.gender = "";
+      this.form.image = "";
+      this.form.email = "";
+      this.form.nickname = "";
+      this.form.birthday = {};
+      this.form.gender = "";
     },
     clear2() {},
     saveUser1() {},
@@ -263,10 +247,8 @@ export default {
         { value: "@126.com" },
         { value: "@163.com" },
         { value: "@sohu.com" },
-        { value: "@gmail.com" },
       ];
     },
-    handleSelect() {},
   },
   created() {
     // alert("注册创建");
@@ -296,16 +278,12 @@ export default {
         console.log("用户已登录");
         console.log(user);
         if (user.length > 0) {
-          this.user = user[0].value;
           router.push({ name: "user", userId: user[0].value.id });
         } else {
           router.push({ name: "login" });
         }
       };
     };
-  },
-  mounted() {
-    this.restaurants = this.loadAll();
   },
   destroyed() {
     // alert("注册销毁");

@@ -6,7 +6,7 @@
           ><b> 用户信息 <i class="header-icon el-icon-info"></i></b>
         </template>
         <el-form
-          ref="form1"
+          ref="form"
           :model="form1"
           :rules="rules1"
           label-width="100px"
@@ -15,7 +15,7 @@
         >
           <el-form-item label=" 头   像：">
             <div>
-              <el-avatar :icon="form1.image"></el-avatar>
+              <el-avatar :icon="form.image"></el-avatar>
             </div>
             <div>
               <el-avatar
@@ -28,30 +28,27 @@
           </el-form-item>
 
           <el-form-item label=" 昵   称：">
-            <el-input v-model="form1.nickname"></el-input
+            <el-input v-model="form.nickname"></el-input
           ></el-form-item>
           <el-form-item
             label=" 邮   箱："
             class="input"
             aria-placeholder="请输入邮箱"
-            prop="email"
           >
-            <el-autocomplete
-              class="inline-input"
-              v-model="form1.email"
-              :fetch-suggestions="querySearch"
-              :trigger-on-focus="false"
-              @select="handleSelect"
-            ></el-autocomplete>
+            <el-input
+              type="email"
+              v-model="form.email"
+              autocomplete="on"
+            ></el-input>
           </el-form-item>
           <el-form-item label=" 性   别：">
-            <el-radio v-model="form1.gender" label="1">男</el-radio>
-            <el-radio v-model="form1.gender" label="2">女</el-radio>
+            <el-radio v-model="form.gender" label="1">男</el-radio>
+            <el-radio v-model="form.gender" label="2">女</el-radio>
           </el-form-item>
           <el-form-item label=" 生   日：">
             <el-date-picker
               format="yyyy 年 MM 月 dd 日"
-              v-model="form1.birthday"
+              v-model="form.birthday"
               type="date"
               placeholder="选择日期"
             >
@@ -94,26 +91,26 @@
           <el-form-item label="当前密码" prop="oldpass">
             <el-input
               type="password"
-              v-model="form2.oldpass"
+              v-model="ruleForm.oldpass"
               autocomplete="off"
             ></el-input>
           </el-form-item>
-          <el-form-item label="新密码" prop="newpass">
+          <el-form-item label="新密码" prop="pass">
             <el-input
               type="password"
-              v-model="form2.newpass"
+              v-model="ruleForm.newpass"
               autocomplete="off"
             ></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="checkPass">
             <el-input
               type="password"
-              v-model="form2.checkPass"
+              v-model="ruleForm.checkPass"
               autocomplete="off"
             ></el-input> </el-form-item
           ><el-form-item class="button"
             ><el-button @click="clear2">重置</el-button>
-            <el-button type="primary" @click="saveUser2('form2')"
+            <el-button type="primary" @click="saveUser2('ruleForm')"
               >保存</el-button
             ></el-form-item
           ></el-form
@@ -137,46 +134,24 @@ export default {
       } else if (!value === this.user.password) {
         callback(new Error("密码错误！"));
       } else {
-        this.$refs.form2.validateField("newpass");
         callback();
       }
     };
     var validateNewPass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入新密码"));
-      } else if (value === this.form2.oldpass) {
-        this.$refs.form2.validateField("checkPass");
-        callback(new Error("新密码与旧密码相同！"));
       } else {
-        this.$refs.form2.validateField("checkPass");
+        if (this.ruleForm.checkPass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
+        }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入新密码"));
-      } else if (!value == this.form2.newpass) {
+      } else if (value !== this.ruleForm.newpass) {
         callback(new Error("两次输入新密码不一致!"));
-      } else {
-        console.log(this.form2.newpass);
-        console.log(this.form2.checkPass);
-
-        if (this.form2.newpass !== this.form2.checkPass) {
-          callback(new Error("两次输入新密码不一致!"));
-          alert("333");
-        }
-        callback();
-        alert("444");
-      }
-    };
-    var validateEmail = (rule, value, callback) => {
-      let reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
-      if (value === "") {
-        console.log(value);
-        callback();
-      } else if (!reg.test(value)) {
-        console.log(value);
-        callback(new Error("邮箱格式错误！"));
       } else {
         callback();
       }
@@ -184,7 +159,7 @@ export default {
     return {
       activeNames: ["1"], //打开的手风琴页面号码
       user: {}, //从数据库取得的user数据
-      form1: {
+      form: {
         //表单输入的信息
         image: "el-icon-user-solid",
         nickname: "",
@@ -192,17 +167,14 @@ export default {
         gender: "",
         birthday: "",
       },
-      rules1: {
-        nickname: [{}],
-        email: [{ validator: validateEmail, trigger: "blur" }],
-      },
-      form2: {
+
+      ruleForm: {
         //参与密码检验的变量
         oldpass: "",
         newpass: "",
         checkPass: "",
       },
-      rules2: {
+      rules: {
         //密码检验规则
         oldpass: [{ validator: validateOldPass, trigger: "blur" }],
         newpass: [{ validator: validateNewPass, trigger: "blur" }],
@@ -217,7 +189,6 @@ export default {
         "el-icon-lollipop",
         "el-icon-coffee",
       ],
-      restaurants: [], //?
     };
   },
   methods: {
@@ -227,14 +198,14 @@ export default {
     changeimgto(item, index) {
       //更改头像class
       console.log(index);
-      this.form1.image = item;
+      this.form.image = item;
     },
     clear1() {
-      this.form1.image = "";
-      this.form1.email = "";
-      this.form1.nickname = "";
-      this.form1.birthday = {};
-      this.form1.gender = "";
+      this.form.image = "";
+      this.form.email = "";
+      this.form.nickname = "";
+      this.form.birthday = {};
+      this.form.gender = "";
     },
     clear2() {},
     saveUser1() {},
@@ -249,24 +220,6 @@ export default {
       });
     },
     logout() {},
-    querySearch(queryString, callback) {
-      let restaurants = this.restaurants;
-      let results = JSON.parse(JSON.stringify(restaurants)); //把数组的浅复制换成深复制
-      for (let item in results) {
-        results[item].value = queryString + "" + restaurants[item].value;
-      }
-      callback(results);
-    },
-    loadAll() {
-      return [
-        { value: "@qq.com" },
-        { value: "@126.com" },
-        { value: "@163.com" },
-        { value: "@sohu.com" },
-        { value: "@gmail.com" },
-      ];
-    },
-    handleSelect() {},
   },
   created() {
     // alert("注册创建");
@@ -296,16 +249,12 @@ export default {
         console.log("用户已登录");
         console.log(user);
         if (user.length > 0) {
-          this.user = user[0].value;
           router.push({ name: "user", userId: user[0].value.id });
         } else {
           router.push({ name: "login" });
         }
       };
     };
-  },
-  mounted() {
-    this.restaurants = this.loadAll();
   },
   destroyed() {
     // alert("注册销毁");
