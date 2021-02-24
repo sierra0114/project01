@@ -1,4 +1,6 @@
-<template >
+<template>
+  <!-- ////////////////////////////////            未完成               //////////////////////////////////// -->
+  <!-- ////////////////////////////////     待办：1.切换日夜间主题       ///////////////////////////////////// -->
   <el-menu
     :default-active="activeIndex"
     class="el-menu-demo"
@@ -7,20 +9,16 @@
   >
     <el-row class="head">
       <el-col :xs="2" :sm="2" :md="2" :lg="1">
-        <!-- 最左边的图标=>返回主页面 -->
-        <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+        <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 最左边的图标=>返回主页面 -->
         <el-link :underline="false" v-on:click="toAppMain">
           <i class="el-icon-s-home"></i>
         </el-link>
         <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-        <!-- 最左边的图标 -->
       </el-col>
-
       <el-col :xs="20" :sm="16" :md="16" :lg="19">
         <el-row type="flex" justify="center">
           <el-col :span="10">
-            <!-- 搜索输入栏 -->
-            <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+            <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 搜索输入栏 -->
             <el-autocomplete
               size="mini"
               prefix-icon="el-icon-search"
@@ -34,17 +32,14 @@
               :fetch-suggestions="querySearchAsync"
             >
               <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-              <!-- 搜索输入栏 -->
             </el-autocomplete>
           </el-col>
         </el-row>
       </el-col>
-
       <el-col :xs="2" :sm="5" :md="5" :lg="3">
         <el-row class="head-inner" type="flex" justify="space-between">
           <el-col :xs="0" :sm="2" :md="2" :lg="2" hidden-xs-only>
-            <!-- 切换皮肤图标 -->
-            <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+            <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 切换皮肤图标 -->
             <el-link v-if="isDay" href="">
               <i class="el-icon-moon"></i>
             </el-link>
@@ -52,12 +47,9 @@
               <i class="el-icon-sunny"></i>
             </el-link>
             <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-            <!-- 切换皮肤图标 -->
           </el-col>
-
           <el-col :xs="0" :sm="3" :md="3" :lg="3" hidden-xs-only>
-            <!-- 通知图标+下拉菜单 -->
-            <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+            <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 通知图标+下拉菜单 -->
             <el-link>
               <el-dropdown
                 size="medium"
@@ -81,25 +73,20 @@
               </el-dropdown>
             </el-link>
             <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-            <!-- 通知图标+下拉菜单 -->
           </el-col>
           <el-col :xs="0" :sm="2" :md="2" :lg="2" hidden-xs-only>
-            <!-- 用户登录/查看用户图标 -->
-            <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+            <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 用户登录/查看用户图标 -->
             <el-link @click="toUser">
               <i class="el-icon-user"></i>
             </el-link>
             <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-            <!-- 用户登录/查看用户图标 -->
           </el-col>
           <el-col :xs="10" :sm="2" :md="2" :lg="2">
-            <!-- 设置图标=>设置页 -->
-            <!-- ↓↓↓↓↓↓↓↓↓↓ -->
+            <!-- ↓↓↓↓↓↓↓↓↓↓ --><!-- 设置图标=>设置页 -->
             <el-link @click="toSetting">
               <i class="el-icon-setting"></i>
             </el-link>
             <!-- ↑↑↑↑↑↑↑↑↑↑ -->
-            <!-- 设置图标=>设置页 -->
           </el-col>
         </el-row>
       </el-col>
@@ -122,7 +109,7 @@ export default {
       user: {}, // 用户对象
 
       // flag
-      registed: false, // 是否已经登录
+      registed: false, // 是否已经注册
     };
   },
   methods: {
@@ -144,19 +131,11 @@ export default {
     },
     // 路由方法=》转到user
     toUser() {
-      /// ///////////////////////////////////////////////////////////////
-      /// /////////////  等待完善的代码//////////////////////////////////
-      // warning：用户对象user未创建
-      // 从数据库查询并导入一个用户对象，导出用户对象的用户名属性，用userId来接收，
-      //     查询本地数据库indexeddb是否存在，存在则查询里面的用户信息
-      //    if（存在数据库&&用户信息）查询返回用户id（唯一），并进入用户user页面
-      //        else 进入登录页面
-
       if (this.registed) {
+        alert("registed===true");
         router.push({ name: "user", userId: this.user.id });
       } else {
-        alert(this.registed);
-        alert("闪现");
+        // alert("登录状态：" + this.registed);
         router.push({ name: "login" });
       }
     },
@@ -291,7 +270,7 @@ export default {
           list2 = readRequest2.result;
           console.log(list2);
           if (list2.length === 0) {
-            //用户注册过
+            //用户未注册过
             this.registed = false;
           } else if (list2[0].value.state === true) {
             //用户注册过且在登录状态
@@ -310,6 +289,7 @@ export default {
   },
   updated() {
     this.getLogState();
+    alert("登录状态：" + this.registed);
   },
   mounted() {
     console.log("顶栏挂载了");
