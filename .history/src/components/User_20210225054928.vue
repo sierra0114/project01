@@ -70,7 +70,7 @@
         <template slot="title"
           ><b> 账户信息 <i class="header-icon el-icon-info"></i></b> </template
         ><el-form label-width="100px" size="small" class="form">
-          <el-form-item label="用户名：">{{ user.name }}</el-form-item>
+          <el-form-item label="用户名：">{{ user.niname }}</el-form-item>
           <el-form-item label="邮箱：">{{ user.email }}</el-form-item>
           <el-form-item label="注册时间：">{{ registTime }}</el-form-item>
           <el-form-item class="button">
@@ -400,13 +400,6 @@ export default {
         console.log(user);
         if (user.length > 0) {
           this.user = user[0].value;
-
-          this.form1.image = this.user.image;
-          this.form1.nickname = this.user.nickname;
-          this.form1.email = this.user.email;
-          this.form1.gender = this.user.gender;
-          this.form1.birthday = this.user.birthday;
-          console.log("放入user信息");
           this.getTime();
           router.push({ name: "user", userId: user[0].id });
         } else {
@@ -417,6 +410,11 @@ export default {
   },
   mounted() {
     this.restaurants = this.loadAll();
+    this.form1.image=this.user.image;
+    this.form1.nickname=this.user.nickname;
+    this.form1.email=this.user.email;
+    this.form1.gender=this.user.gender;
+    this.form1.birthday=this.user.birthday;
   },
   destroyed() {
     // alert("注册销毁");

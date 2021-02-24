@@ -335,8 +335,6 @@ export default {
     },
     logout() {
       this.user.state = false;
-      this.clear1();
-      this.clear2();
       this.putIndexedDB(this.user);
     },
     getTime() {
@@ -400,13 +398,6 @@ export default {
         console.log(user);
         if (user.length > 0) {
           this.user = user[0].value;
-
-          this.form1.image = this.user.image;
-          this.form1.nickname = this.user.nickname;
-          this.form1.email = this.user.email;
-          this.form1.gender = this.user.gender;
-          this.form1.birthday = this.user.birthday;
-          console.log("放入user信息");
           this.getTime();
           router.push({ name: "user", userId: user[0].id });
         } else {
