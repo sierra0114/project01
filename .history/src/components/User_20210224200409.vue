@@ -240,7 +240,7 @@ export default {
         let user = readRequest.result;
         console.log("用户已登录");
         console.log(user);
-        if (user.length > 0) {
+        if (user.length >= 0) {
           router.push({ name: "user", userId: user.id });
         } else {
           router.push({ name: "login" });
