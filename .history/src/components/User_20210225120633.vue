@@ -408,10 +408,10 @@ export default {
             console.log("放入user信息");
             this.getTime();
           } else {
-            router.push({ name: "login" });
           }
+
+          router.push({ name: "user", userId: user[0].id });
         } else {
-          router.push({ name: "login" });
         }
       };
     };

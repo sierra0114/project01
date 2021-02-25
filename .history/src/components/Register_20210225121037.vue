@@ -202,11 +202,9 @@ export default {
             console.log("用户已登录");
             console.log(user);
             router.push({ name: "user", userId: user.id });
-          } else {
-            console.log("用户未登录");
           }
         } else {
-          console.log("用户未注册");
+          
         }
       };
     };

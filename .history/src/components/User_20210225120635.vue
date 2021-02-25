@@ -410,8 +410,9 @@ export default {
           } else {
             router.push({ name: "login" });
           }
+
+          router.push({ name: "user", userId: user[0].id });
         } else {
-          router.push({ name: "login" });
         }
       };
     };

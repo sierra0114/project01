@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="注册"
+    title="登录"
     :visible.sync="form.dialogFormVisible"
     :center="true"
     :width="width"
@@ -25,11 +25,11 @@
           show-password
         ></el-input>
       </el-form-item>
-      <p>已有账号，点击<b @click="tologin">登录</b></p>
+      <p>还未注册，点击<b @click="toregister">注册</b></p>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="cancelForm">取 消</el-button>
-      <el-button type="primary" @click="registUser">确 定</el-button>
+      <el-button type="primary" @click="login">确 定</el-button>
     </div>
   </el-dialog>
 </template>
@@ -96,36 +96,20 @@ export default {
     };
   },
   methods: {
-    tologin() {
+    toregister() {
       router.push({
-        name: "login",
+        name: "register",
       });
     },
     cancelForm() {
       this.$refs.form.resetFields();
       this.form.dialogFormVisible = false;
+      router.push({ name: "calendar" });
     },
-    registUser() {
+    login() {
       this.getUser();
-      this.saveUser();
     },
     getUser() {
-      let user = {};
-      let id = new Date();
-      user.time = id;
-      user.name = this.form.name;
-      user.password = this.form.password;
-      user.id = id.getTime();
-      user.state = true;
-      user.email = "";
-      user.image = "";
-      user.nickname = "";
-      user.gender = "";
-      user.birthday = {};
-      user.popup = false;
-      this.user = user;
-    },
-    saveUser() {
       let db; // 数据库对象
       let objStore; // 对象仓库
       let request; // 请求
@@ -145,26 +129,27 @@ export default {
         // 对，先在create的时候进数据库判断一下有无user存在，存在就直接跳用户页面，这里不用改！！
         // 保险一点的话先看看数据库里有无user数据存在，有则进入user页面，无则put新user信息
 
-        readRequest = objStore.put({ id: this.user.id, value: this.user });
+        readRequest = objStore.getAll(null);
 
         readRequest.onerror = () => {
           alert("读取user存储库数据失败！");
-          Message.error("注册失败！");
+          Message.error("登录失败！");
         };
         readRequest.onsuccess = () => {
           // alert("user保存成功！");
+          this.user = readRequest.result;
+          this.$refs.form.resetFields();
+          this.form.dialogFormVisible = false;
 
           let loadingInstance = Loading.service({ fullscreen: true });
           setTimeout(() => {
             this.$nextTick(() => {
               // 以服务的方式调用的 Loading 需要异步关闭
-              this.$refs.form.resetFields();
-              this.form.dialogFormVisible = false;
               loadingInstance.close();
             });
-            Message.success("注册成功！欢迎-" + this.user.name);
-            router.push({ name: "user", userId: this.user.id });
           }, 1000);
+          Message.success("登录成功！欢迎-" + this.user.name);
+          router.push({ name: "user", userId: this.user.id });
         };
       };
     },
@@ -172,7 +157,7 @@ export default {
       router.push({ name: "calendar" });
     },
   },
-  created() {
+  beforeCreate() {
     // alert("注册创建");
     let db; // 数据库对象
     let objStore; // 对象仓库
@@ -206,7 +191,7 @@ export default {
             console.log("用户未登录");
           }
         } else {
-          console.log("用户未注册");
+          console.log("用户未登录");
         }
       };
     };

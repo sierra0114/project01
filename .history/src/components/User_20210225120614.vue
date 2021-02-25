@@ -407,9 +407,9 @@ export default {
             this.form1.birthday = this.user.birthday;
             console.log("放入user信息");
             this.getTime();
-          } else {
-            router.push({ name: "login" });
-          }
+          }el
+
+          router.push({ name: "user", userId: user[0].id });
         } else {
           router.push({ name: "login" });
         }

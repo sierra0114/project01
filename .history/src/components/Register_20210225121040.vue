@@ -206,7 +206,6 @@ export default {
             console.log("用户未登录");
           }
         } else {
-          console.log("用户未注册");
         }
       };
     };

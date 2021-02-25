@@ -260,6 +260,10 @@ export default {
       });
     },
     saveUser2(formName) {
+    
+                                  //   todo：退出登录按钮，退出登录后和header同步更新state使点击user跳转到login
+
+
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.user.password = this.form2.newpass;
@@ -399,17 +403,15 @@ export default {
         console.log(user);
         if (user.length > 0) {
           this.user = user[0].value;
-          if (this.user.state) {
-            this.form1.image = this.user.image;
-            this.form1.nickname = this.user.nickname;
-            this.form1.email = this.user.email;
-            this.form1.gender = this.user.gender;
-            this.form1.birthday = this.user.birthday;
-            console.log("放入user信息");
-            this.getTime();
-          } else {
-            router.push({ name: "login" });
-          }
+
+          this.form1.image = this.user.image;
+          this.form1.nickname = this.user.nickname;
+          this.form1.email = this.user.email;
+          this.form1.gender = this.user.gender;
+          this.form1.birthday = this.user.birthday;
+          console.log("放入user信息");
+          this.getTime();
+          router.push({ name: "user", userId: user[0].id });
         } else {
           router.push({ name: "login" });
         }
