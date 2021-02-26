@@ -198,10 +198,10 @@ export default {
       readRequest.onsuccess = () => {
         let user = readRequest.result;
         if (user.length > 0) {
-          if (user[0].value.state === true) {
+          if (user[0].state === true) {
             console.log("用户已登录");
             console.log(user);
-            router.push({ name: "user", userId: user[0].id });
+            router.push({ name: "user", userId: user.id });
           } else {
             console.log("用户未登录");
           }
