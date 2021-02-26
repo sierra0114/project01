@@ -337,7 +337,7 @@ export default {
       this.clear1();
       this.clear2();
       this.putIndexedDB(this.user);
-      router.push({ name: "calendar" });
+      router.push()
     },
     getTime() {
       let time = this.user.time;

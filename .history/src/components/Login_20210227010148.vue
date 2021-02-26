@@ -115,7 +115,7 @@ export default {
 
           let loadingInstance = Loading.service({ fullscreen: true }); //打开loading持续1秒
           setTimeout(() => {
-            // alert("进入延迟");
+            alert("进入延迟");
 
             this.$nextTick(() => {
               // 以服务的方式调用的 Loading 需要异步关闭

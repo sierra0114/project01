@@ -50,8 +50,6 @@ export default {
         console.log(this.user);
         console.log(value);
         callback(new Error("用户名不存在！"));
-      } else {
-        callback();
       }
     };
     var validatePass = (rule, value, callback) => {
@@ -84,10 +82,12 @@ export default {
         ],
         password: [
           {
+            type: "string",
+            required: true,
             transform(value) {
               return value.trim();
             },
-            validator: validatePass,
+            message: "请输入密码",
             trigger: "blur",
           },
         ],
@@ -106,34 +106,9 @@ export default {
       router.push({ name: "calendar" });
     },
     login() {
-      this.$refs["form"].validate((valid) => {
-        if (valid) {
-          //通过验证
-          // alert("通过验证");
-          this.$refs.form.resetFields(); //清空表格
-          this.form.dialogFormVisible = false; //关闭dialog
-
-          let loadingInstance = Loading.service({ fullscreen: true }); //打开loading持续1秒
-          setTimeout(() => {
-            // alert("进入延迟");
-
-            this.$nextTick(() => {
-              // 以服务的方式调用的 Loading 需要异步关闭
-              loadingInstance.close();
-            });
-          }, 1000);
-
-          Message.success("登录成功！欢迎-" + this.user.name); //发送成功通知
-          this.settUser();
-        } else {
-          // alert("未通过验证");
-
-          Message.warning("验证未通过！");
-          return false;
-        }
-      });
+      this.getUser();
     },
-    settUser() {
+    getUser() {
       let db; // 数据库对象
       let objStore; // 对象仓库
       let request; // 请求
@@ -152,16 +127,43 @@ export default {
 
         // 对，先在create的时候进数据库判断一下有无user存在，存在就直接跳用户页面，这里不用改！！
         // 保险一点的话先看看数据库里有无user数据存在，有则进入user页面，无则put新user信息
-        this.user.state = true;
-        readRequest = objStore.put({ id: this.user.id, value: this.user });
+
+        readRequest = objStore.getAll(null);
 
         readRequest.onerror = () => {
           alert("读取user存储库数据失败！");
-          Message.error("登录状态改变失败！");
+          Message.error("登录失败！");
         };
         readRequest.onsuccess = () => {
           // alert("user保存成功！");
-          router.push({ name: "user", userId: this.user.id }); //转到user页面
+          let user = readRequest.result;
+          this.user = user[0].value; //保存user数据
+          this.$refs["form"].validate((valid) => {
+            if (valid) {
+              //通过验证
+              alert("通过验证");
+              this.$refs.form.resetFields(); //清空表格
+              this.form.dialogFormVisible = false; //关闭dialog
+
+              let loadingInstance = Loading.service({ fullscreen: true }); //打开loading持续1秒
+              setTimeout(() => {
+                alert("进入延迟");
+
+                this.$nextTick(() => {
+                  // 以服务的方式调用的 Loading 需要异步关闭
+                  loadingInstance.close();
+                });
+              }, 1000);
+
+              Message.success("登录成功！欢迎-" + this.user.name); //发送成功通知
+              router.push({ name: "user", userId: this.user.id }); //转到user页面
+            } else {
+              alert("未通过验证");
+
+              Message.warning("验证未通过！");
+              return false;
+            }
+          });
         };
       };
     },

@@ -109,13 +109,13 @@ export default {
       this.$refs["form"].validate((valid) => {
         if (valid) {
           //通过验证
-          // alert("通过验证");
+          alert("通过验证");
           this.$refs.form.resetFields(); //清空表格
           this.form.dialogFormVisible = false; //关闭dialog
 
           let loadingInstance = Loading.service({ fullscreen: true }); //打开loading持续1秒
           setTimeout(() => {
-            // alert("进入延迟");
+            alert("进入延迟");
 
             this.$nextTick(() => {
               // 以服务的方式调用的 Loading 需要异步关闭
@@ -126,7 +126,7 @@ export default {
           Message.success("登录成功！欢迎-" + this.user.name); //发送成功通知
           this.settUser();
         } else {
-          // alert("未通过验证");
+          alert("未通过验证");
 
           Message.warning("验证未通过！");
           return false;
@@ -153,7 +153,7 @@ export default {
         // 对，先在create的时候进数据库判断一下有无user存在，存在就直接跳用户页面，这里不用改！！
         // 保险一点的话先看看数据库里有无user数据存在，有则进入user页面，无则put新user信息
         this.user.state = true;
-        readRequest = objStore.put({ id: this.user.id, value: this.user });
+        readRequest = objStore.put(this.user.id);
 
         readRequest.onerror = () => {
           alert("读取user存储库数据失败！");

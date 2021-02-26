@@ -109,13 +109,13 @@ export default {
       this.$refs["form"].validate((valid) => {
         if (valid) {
           //通过验证
-          // alert("通过验证");
+          alert("通过验证");
           this.$refs.form.resetFields(); //清空表格
           this.form.dialogFormVisible = false; //关闭dialog
 
           let loadingInstance = Loading.service({ fullscreen: true }); //打开loading持续1秒
           setTimeout(() => {
-            // alert("进入延迟");
+            alert("进入延迟");
 
             this.$nextTick(() => {
               // 以服务的方式调用的 Loading 需要异步关闭
