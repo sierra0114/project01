@@ -50,6 +50,7 @@
           </el-form-item>
           <el-form-item label=" 生   日：">
             <el-date-picker
+              format="yyyy 年 MM 月 dd 日"
               v-model="form1.birthday"
               type="date"
               placeholder="选择日期"
@@ -371,18 +372,6 @@ export default {
     },
     handleSelect() {},
   },
-  computed: {
-    getToday() {
-      const time = new Date();
-
-      const date = time.getDate();
-      const month = time.getMonth() + 1;
-      const year = time.getFullYear();
-
-      const timeStr = year + "年" + month + "月" + date + "日";
-      return timeStr;
-    },
-  },
   beforeCreate() {
     let db; // 数据库对象
     let objStore; // 对象仓库
@@ -428,13 +417,9 @@ export default {
       };
     };
   },
-  created() {
+  mounted() {
     this.restaurants = this.loadAll();
-    let str = this.getToday;
-    this.$set(this.form1, "birthday", str);
-    console.log(str);
   },
-  mounted() {},
   destroyed() {
     // alert("注册销毁");
   },

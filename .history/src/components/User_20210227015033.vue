@@ -50,6 +50,7 @@
           </el-form-item>
           <el-form-item label=" 生   日：">
             <el-date-picker
+              format="yyyy 年 MM 月 dd 日"
               v-model="form1.birthday"
               type="date"
               placeholder="选择日期"

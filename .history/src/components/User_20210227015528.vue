@@ -50,6 +50,7 @@
           </el-form-item>
           <el-form-item label=" 生   日：">
             <el-date-picker
+              :clearable="false"
               v-model="form1.birthday"
               type="date"
               placeholder="选择日期"
@@ -219,6 +220,7 @@ export default {
       ],
       restaurants: [], //?
       registTime: "",
+      
     };
   },
   methods: {

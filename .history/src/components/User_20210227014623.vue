@@ -50,6 +50,7 @@
           </el-form-item>
           <el-form-item label=" 生   日：">
             <el-date-picker
+              format="yyyy 年 MM 月 dd 日"
               v-model="form1.birthday"
               type="date"
               placeholder="选择日期"
@@ -430,9 +431,9 @@ export default {
   },
   created() {
     this.restaurants = this.loadAll();
-    let str = this.getToday;
+    let str = this.getToday();
     this.$set(this.form1, "birthday", str);
-    console.log(str);
+    console.log()
   },
   mounted() {},
   destroyed() {

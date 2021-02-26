@@ -374,12 +374,22 @@ export default {
   computed: {
     getToday() {
       const time = new Date();
-
+      const day = time.getDay();
       const date = time.getDate();
       const month = time.getMonth() + 1;
       const year = time.getFullYear();
-
-      const timeStr = year + "年" + month + "月" + date + "日";
+      const weekMap = [
+        "",
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六",
+        "星期日",
+        "",
+      ];
+      const timeStr = year + "年" + month + "月" + date + "日" + weekMap[day];
       return timeStr;
     },
   },
@@ -428,13 +438,10 @@ export default {
       };
     };
   },
-  created() {
+  mounted() {
     this.restaurants = this.loadAll();
-    let str = this.getToday;
-    this.$set(this.form1, "birthday", str);
-    console.log(str);
+    this.form1.birthday = this.getToday();
   },
-  mounted() {},
   destroyed() {
     // alert("注册销毁");
   },

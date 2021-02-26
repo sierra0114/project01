@@ -427,7 +427,7 @@ export default {
         }
       };
     };
-  },
+  },                              
   created() {
     this.restaurants = this.loadAll();
     let str = this.getToday;

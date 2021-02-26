@@ -132,6 +132,7 @@ export default {
     // 路由方法=》转到user
     toUser() {
       if (this.registed) {
+        alert("registed===true");
         router.push({ name: "user", userId: this.user.id });
       } else {
         // alert("登录状态：" + this.registed);
