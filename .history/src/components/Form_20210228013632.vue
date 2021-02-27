@@ -9,7 +9,6 @@
     ></el-button>
 
     <el-drawer
-      @opened="handelOpen"
       :append-to-body="true"
       :modal-append-to-body="false"
       title="新建事项"
@@ -86,7 +85,6 @@
               placeholder="请输入事项内容"
               v-model="form.textarea1"
               :autofocus="true"
-              ref="mainText"
             >
             </el-input
           ></el-col>
@@ -297,13 +295,12 @@ export default {
     return {
       // 抽屉属性和变量
       drawer: false,
-      direction: "ltr",
+      direction: "rtl",
       color: "",
 
       // flag
       flag_1: false,
       firstTime: true,
-      true: true,
 
       // key
       returnKey: 0,
@@ -381,9 +378,6 @@ export default {
     };
   },
   methods: {
-    handelOpen() {
-      this.$refs.mainText.focus();
-    },
     /// /////////////////////           表单保存-开始           ///////////////////////////////
     // 当点击表单的 确认按钮 或者表单失去 焦点blur 后，弹出确认框=》保存并关闭抽屉/返回
     handleClose() {
@@ -740,9 +734,6 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------

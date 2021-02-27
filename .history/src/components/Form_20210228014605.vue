@@ -718,6 +718,7 @@ export default {
         if (this.form.tag.dynamicTags.length === 0) {
           // 如果dynamicTags中不存在tag
           this.addTag(); // 就将inputValue放入dynamicTags
+          this.$refs.tagInput.focus();
         } else {
           // 如果dynamicTags中存在tag
           for (let i in this.form.tag.dynamicTags) {
@@ -740,9 +741,6 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------

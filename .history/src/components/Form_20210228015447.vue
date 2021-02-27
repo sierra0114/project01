@@ -740,9 +740,7 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
+      this.$refs.saveTagInput.$refs.input.focus();
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------

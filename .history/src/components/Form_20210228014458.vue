@@ -700,8 +700,7 @@ export default {
     /// /////////////////////           Tag-开始           ///////////////////////////////
     handleCloseTag(tag) {
       this.form.tag.dynamicTags.splice(
-        this.form.tag.dynamicTags.indexOf(tag),
-        1
+        this.form.tag.dynamicTags.indexOf(tag);
       );
     },
     showInput() {
@@ -740,9 +739,6 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------

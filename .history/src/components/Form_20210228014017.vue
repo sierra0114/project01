@@ -9,7 +9,7 @@
     ></el-button>
 
     <el-drawer
-      @opened="handelOpen"
+      :opened="handelOpen"
       :append-to-body="true"
       :modal-append-to-body="false"
       title="新建事项"
@@ -297,7 +297,7 @@ export default {
     return {
       // 抽屉属性和变量
       drawer: false,
-      direction: "ltr",
+      direction: "rtl",
       color: "",
 
       // flag
@@ -740,9 +740,6 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------

@@ -383,6 +383,7 @@ export default {
   methods: {
     handelOpen() {
       this.$refs.mainText.focus();
+      alert("1");
     },
     /// /////////////////////           表单保存-开始           ///////////////////////////////
     // 当点击表单的 确认按钮 或者表单失去 焦点blur 后，弹出确认框=》保存并关闭抽屉/返回
@@ -740,9 +741,6 @@ export default {
       this.form.tag.dynamicTags.push(this.form.tag.inputValue);
       this.form.tag.inputVisible = false;
       this.form.tag.inputValue = "";
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
     },
     // ------------------------         Tag-结束          ----------------------
     // --------------------------------------------------------------------------------
