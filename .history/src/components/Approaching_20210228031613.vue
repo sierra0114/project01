@@ -86,7 +86,7 @@ export default {
           activity.type = this.toColorClass(this.list[i].color);
           activity.timestamp =
             this.getTime(this.list[i], 0) +
-            "  到  " +
+            "\xa0\xa0到\xa0\xa0" +
             this.getTime(this.list[i], 1);
           activity.size = "large";
           expiredList.push(activity);

@@ -85,7 +85,7 @@ export default {
           activity.content = this.list[i].mainText;
           activity.type = this.toColorClass(this.list[i].color);
           activity.timestamp =
-            this.getTime(this.list[i], 0) +
+            this.getTime(this.list[i], 0) +" "
             "  到  " +
             this.getTime(this.list[i], 1);
           activity.size = "large";
