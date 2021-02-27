@@ -263,7 +263,6 @@ export default {
         if (valid) {
           this.user.password = this.form2.newpass;
           this.putIndexedDB(this.user);
-          this.clear2();
         } else {
           Message.warning("验证未通过！");
           return false;
@@ -428,8 +427,8 @@ export default {
         }
       };
     };
-  },
-  created() {
+  },                              时间选择器的表现有问题
+  ，created() {，
     this.restaurants = this.loadAll();
     let str = this.getToday;
     this.$set(this.form1, "birthday", str);

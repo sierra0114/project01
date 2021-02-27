@@ -263,7 +263,7 @@ export default {
         if (valid) {
           this.user.password = this.form2.newpass;
           this.putIndexedDB(this.user);
-          this.clear2();
+          this.c
         } else {
           Message.warning("验证未通过！");
           return false;

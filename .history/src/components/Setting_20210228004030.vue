@@ -49,8 +49,6 @@
   </div>
 </template>
 <script>
-import router from "../router";
-
 export default {
   name: "Setting",
   data() {
@@ -88,9 +86,17 @@ export default {
         console.log(user);
         if (user.length > 0) {
           this.user = user[0].value;
-          if (!this.user.state) {
-            router.push({ name: "login" });
+          if (this.user.state) {
+            this.form1.image = this.user.image;
+            this.form1.nickname = this.user.nickname;
+            this.form1.email = this.user.email;
+            this.form1.gender = this.user.gender;
+            this.form1.birthday = this.user.birthday;
+            console.log("放入user信息");
+            this.getTime();
+          } else {
           }
+        } else {
         }
       };
     };

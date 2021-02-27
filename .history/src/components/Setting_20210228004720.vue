@@ -91,7 +91,7 @@ export default {
           if (!this.user.state) {
             router.push({ name: "login" });
           }
-        }
+        }                   从设置进入登录，登录后回到设置。从
       };
     };
   },

@@ -89,8 +89,11 @@ export default {
         if (user.length > 0) {
           this.user = user[0].value;
           if (!this.user.state) {
+          } else {
             router.push({ name: "login" });
           }
+        } else {
+          router.push({ name: "login" });
         }
       };
     };

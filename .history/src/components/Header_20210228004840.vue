@@ -131,7 +131,9 @@ export default {
     },
     // 路由方法=》转到user
     toUser() {
-      router.push({ name: "user", userId: this.user.id });
+
+        router.push({ name: "user", userId: this.user.id });
+
     },
     toSetting() {
       router.push({ name: "setting" });

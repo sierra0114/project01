@@ -49,8 +49,6 @@
   </div>
 </template>
 <script>
-import router from "../router";
-
 export default {
   name: "Setting",
   data() {
@@ -86,12 +84,6 @@ export default {
         let user = readRequest.result;
         console.log("用户已登录");
         console.log(user);
-        if (user.length > 0) {
-          this.user = user[0].value;
-          if (!this.user.state) {
-            router.push({ name: "login" });
-          }
-        }
       };
     };
   },

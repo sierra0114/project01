@@ -91,10 +91,10 @@ export default {
           if (!this.user.state) {
             router.push({ name: "login" });
           }
-        }
+        }          把info的id设为user的id
       };
     };
-  },
+  },                 
 };
 </script>
 <style scoped>

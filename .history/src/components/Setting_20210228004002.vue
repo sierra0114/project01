@@ -49,8 +49,6 @@
   </div>
 </template>
 <script>
-import router from "../router";
-
 export default {
   name: "Setting",
   data() {
@@ -60,41 +58,7 @@ export default {
       activeNames: ["1"],
     };
   },
-  created() {
-    let db; // 数据库对象
-    let objStore; // 对象仓库
-    let request; // 请求
-    let transaction; // 连接事务
-    let readRequest; // 读写事务
-
-    request = window.indexedDB.open("db"); // 连接数据库
-    request.onerror = () => {
-      alert("链接数据库失败");
-    };
-
-    request.onsuccess = (event) => {
-      db = event.target.result;
-      transaction = db.transaction("user", "readwrite");
-      objStore = transaction.objectStore("user");
-
-      readRequest = objStore.getAll(null);
-
-      readRequest.onerror = () => {
-        alert("读取user存储库数据失败！");
-      };
-      readRequest.onsuccess = () => {
-        let user = readRequest.result;
-        console.log("用户已登录");
-        console.log(user);
-        if (user.length > 0) {
-          this.user = user[0].value;
-          if (!this.user.state) {
-            router.push({ name: "login" });
-          }
-        }
-      };
-    };
-  },
+  created()
 };
 </script>
 <style scoped>

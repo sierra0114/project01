@@ -91,10 +91,9 @@ export default {
           if (!this.user.state) {
             router.push({ name: "login" });
           }
-        }
-      };
+        }        
     };
-  },
+  },                 
 };
 </script>
 <style scoped>

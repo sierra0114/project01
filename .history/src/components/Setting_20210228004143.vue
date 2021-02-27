@@ -88,9 +88,13 @@ export default {
         console.log(user);
         if (user.length > 0) {
           this.user = user[0].value;
-          if (!this.user.state) {
+          if (this.user.state) {
+            this.user = user[0].value;
+          } else {
             router.push({ name: "login" });
           }
+        } else {
+          router.push({ name: "login" });
         }
       };
     };
