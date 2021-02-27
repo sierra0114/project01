@@ -158,7 +158,7 @@ b {
 }
 a {
   text-decoration: underline;
-  color: #303133;
+  color: black;
 }
 .el-form {
   width: 400px;

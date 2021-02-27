@@ -35,7 +35,7 @@
         </el-form>
         <div class="explain">
           请前往
-          <a>{{ user.email }}</a> 确认您的注册邮箱，确认后方能启动邮件提醒功能。
+         <a>{{ user.email }}</a> 确认您的注册邮箱，确认后方能启动邮件提醒功能。
           <br />
           请在修改邮箱后，点“发送确认链接”，而后到新邮箱中作验证。否则，任务提醒仍将通过原邮箱发送。
         </div>
@@ -156,9 +156,8 @@ p {
 b {
   letter-spacing: 1px;
 }
-a {
-  text-decoration: underline;
-  color: #303133;
+a{
+  color: black;
 }
 .el-form {
   width: 400px;

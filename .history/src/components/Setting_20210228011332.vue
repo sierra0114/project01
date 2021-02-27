@@ -27,22 +27,21 @@
           <el-form-item label="接收提醒的邮箱：" prop="email">
             <el-input
               size="small"
-              suffix-icon="el-icon-edit"
+              type="password"
               v-model="user.email"
               autocomplete="off"
             ></el-input>
           </el-form-item>
         </el-form>
         <div class="explain">
-          请前往
-          <a>{{ user.email }}</a> 确认您的注册邮箱，确认后方能启动邮件提醒功能。
+          请前往 {{ user.email }} 确认您的注册邮箱，确认后方能启动邮件提醒功能。
           <br />
           请在修改邮箱后，点“发送确认链接”，而后到新邮箱中作验证。否则，任务提醒仍将通过原邮箱发送。
         </div>
         <p>邮件未收到？</p>
         <p>1. 可能误归到垃圾箱了，或者您输错了邮箱。</p>
         <p>
-          2. 请用<a> {{ user.email }} </a>发送标题为 “ 邮件未收到 ” 的邮件至
+          2. 请用 {{ user.email }} 发送标题为 “ 邮件未收到 ” 的邮件至
           contact@snoworange.com ，我们会手动发送您所需的邮件。
         </p>
         <el-button>发送确认连接</el-button>
@@ -156,10 +155,7 @@ p {
 b {
   letter-spacing: 1px;
 }
-a {
-  text-decoration: underline;
-  color: #303133;
-}
+
 .el-form {
   width: 400px;
 }
