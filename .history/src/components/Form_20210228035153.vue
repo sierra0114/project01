@@ -21,11 +21,15 @@
       size="30%"
     >
       <div id="color" :class="color">
-        <el-row class="drawer-header" style="white-space: wrap">
+        <el-row class="drawer-header">
           <!-- 第一行：四个子选项和确认取消按钮 -->
           <el-col
             :span="9"
-            style="display: flex; justify-content: space-around"
+            style="
+              display: flex;
+              justify-content: space-around;
+              flex-flow: row wrap;
+            "
           >
             <el-tooltip effect="dark" content="备注" placement="bottom">
               <el-link
@@ -59,8 +63,9 @@
 
           <el-col
             v-if="firstTime"
-            :span="15"
-            style="white-space: nowrap; text-align:right"
+            :span="9"
+            :offset="5"
+            style="white-space: nowrap"
           >
             <el-button @click="cancelForm()" size="mini">取 消</el-button>
 
@@ -127,7 +132,7 @@
 
         <el-row>
           <!-- 按钮组，优先级选项 -->
-          <el-col :span="24" class="buttonGroup">
+          <el-col :span="20" class="buttonGroup" style="white-space: nowrap">
             <el-button
               type="danger"
               icon="el-icon-close"
@@ -181,7 +186,7 @@
 
         <el-row>
           <!-- 日期时间起止选择器 -->
-          <el-col :span="24">
+          <el-col :span="20">
             <el-date-picker
               v-model="form.timeValue"
               type="datetimerange"

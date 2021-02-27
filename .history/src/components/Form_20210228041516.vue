@@ -60,7 +60,7 @@
           <el-col
             v-if="firstTime"
             :span="15"
-            style="white-space: nowrap; text-align:right"
+            style="white-space: nowrap; float: right"
           >
             <el-button @click="cancelForm()" size="mini">取 消</el-button>
 
@@ -846,6 +846,7 @@ i {
   width: 90px;
   margin-left: 10px;
   vertical-align: bottom;
+  floa
 }
 .icon {
   margin: 5px 0;

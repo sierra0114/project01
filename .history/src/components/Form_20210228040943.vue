@@ -21,58 +21,61 @@
       size="30%"
     >
       <div id="color" :class="color">
-        <el-row class="drawer-header" style="white-space: wrap">
+        <el-row class="drawer-header">
           <!-- 第一行：四个子选项和确认取消按钮 -->
-          <el-col
-            :span="9"
-            style="display: flex; justify-content: space-around"
-          >
-            <el-tooltip effect="dark" content="备注" placement="bottom">
-              <el-link
-                class="el-icon-document"
-                :underline="false"
-                v-on:click="showRemark"
-              ></el-link>
-            </el-tooltip>
-            <el-tooltip effect="dark" content="总结" placement="bottom">
-              <el-link
-                class="el-icon-chat-line-square"
-                :underline="false"
-                v-on:click="showSummary"
-              ></el-link>
-            </el-tooltip>
-            <el-tooltip effect="dark" content="子任务" placement="bottom">
-              <el-link
-                class="el-icon-connection"
-                :underline="false"
-                v-on:click="showSubmission"
-              ></el-link>
-            </el-tooltip>
-            <el-tooltip effect="dark" content="提醒" placement="bottom">
-              <el-link
-                class="el-icon-bell"
-                :underline="false"
-                v-on:click="showRemind"
-              ></el-link>
-            </el-tooltip>
-          </el-col>
-
-          <el-col
-            v-if="firstTime"
-            :span="15"
-            style="white-space: nowrap; text-align:right"
-          >
-            <el-button @click="cancelForm()" size="mini">取 消</el-button>
-
-            <el-button type="primary" @click="handleClose()" size="mini"
-              >保 存</el-button
+          <el-col :span="24" style="display: flex; flex-flow: row wrap">
+            <el-col
+              :span="9"
+              style="display: flex; justify-content: space-around"
             >
-          </el-col>
-          <el-col v-else :span="9" :offset="5" style="white-space: nowrap">
-            <el-button @click="Delete()" size="mini">删 除</el-button>
-            <el-button type="primary" @click="handleClose()" size="mini"
-              >保 存</el-button
+              <el-tooltip effect="dark" content="备注" placement="bottom">
+                <el-link
+                  class="el-icon-document"
+                  :underline="false"
+                  v-on:click="showRemark"
+                ></el-link>
+              </el-tooltip>
+              <el-tooltip effect="dark" content="总结" placement="bottom">
+                <el-link
+                  class="el-icon-chat-line-square"
+                  :underline="false"
+                  v-on:click="showSummary"
+                ></el-link>
+              </el-tooltip>
+              <el-tooltip effect="dark" content="子任务" placement="bottom">
+                <el-link
+                  class="el-icon-connection"
+                  :underline="false"
+                  v-on:click="showSubmission"
+                ></el-link>
+              </el-tooltip>
+              <el-tooltip effect="dark" content="提醒" placement="bottom">
+                <el-link
+                  class="el-icon-bell"
+                  :underline="false"
+                  v-on:click="showRemind"
+                ></el-link>
+              </el-tooltip>
+            </el-col>
+
+            <el-col
+              v-if="firstTime"
+              :span="9"
+              :offset="5"
+              style="white-space: nowrap"
             >
+              <el-button @click="cancelForm()" size="mini">取 消</el-button>
+
+              <el-button type="primary" @click="handleClose()" size="mini"
+                >保 存</el-button
+              >
+            </el-col>
+            <el-col v-else :span="9" :offset="5" style="white-space: nowrap">
+              <el-button @click="Delete()" size="mini">删 除</el-button>
+              <el-button type="primary" @click="handleClose()" size="mini"
+                >保 存</el-button
+              >
+            </el-col>
           </el-col>
         </el-row>
 
@@ -862,7 +865,5 @@ i {
 .el-date-editor--datetimerange.el-input,
 .el-date-editor--datetimerange.el-input__inner {
   width: auto !important;
-}
-.drawer-header {
 }
 </style>

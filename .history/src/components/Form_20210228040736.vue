@@ -21,8 +21,11 @@
       size="30%"
     >
       <div id="color" :class="color">
-        <el-row class="drawer-header" style="white-space: wrap">
+        <el-row
+          class="drawer-header"
+        >
           <!-- 第一行：四个子选项和确认取消按钮 -->
+          <el-col :span='24'
           <el-col
             :span="9"
             style="display: flex; justify-content: space-around"
@@ -59,8 +62,9 @@
 
           <el-col
             v-if="firstTime"
-            :span="15"
-            style="white-space: nowrap; text-align:right"
+            :span="9"
+            :offset="5"
+            style="white-space: nowrap"
           >
             <el-button @click="cancelForm()" size="mini">取 消</el-button>
 

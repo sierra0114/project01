@@ -60,7 +60,8 @@
           <el-col
             v-if="firstTime"
             :span="15"
-            style="white-space: nowrap; text-align:right"
+            :pull="1"
+            style="white-space: nowrap"
           >
             <el-button @click="cancelForm()" size="mini">取 消</el-button>
 
