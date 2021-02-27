@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="nothing" class="nothing">暂时没有已经过期的事项哦 : ></div>
-    <el-timeline v-else>
+    <el-timeline>
       <el-timeline-item
         v-for="(activity, index) in expiredList"
         :key="index"
@@ -203,7 +203,7 @@ export default {
   position: absolute;
   top: 50%;
   left: 40%;
-  width: auto;
+  width: 100%;
   color: rgb(134, 134, 134);
 }
 </style>

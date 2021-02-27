@@ -146,7 +146,7 @@ export default {
   transition: all 0.3s ease;
 }
 .card-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .card-enter,.card-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {

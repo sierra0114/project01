@@ -203,7 +203,7 @@ export default {
   position: absolute;
   top: 50%;
   left: 40%;
-  width: auto;
+  width: 100%;
   color: rgb(134, 134, 134);
 }
 </style>

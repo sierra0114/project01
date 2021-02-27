@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="nothing" class="nothing">暂时没有系统消息哦 : ></div>
+    <div v-if="nothing" class="nothing">暂时没有系统通知哦 : ></div>
     <el-timeline v-else>
       <el-timeline-item
         v-for="(activity, index) in systemList"

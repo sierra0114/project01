@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="nothing" class="nothing">暂时没有系统消息哦 : ></div>
+    <div v-if="nothing" class="nothing">暂时没有系统通知哦 : ></div>
     <el-timeline v-else>
       <el-timeline-item
         v-for="(activity, index) in systemList"
@@ -35,7 +35,7 @@ export default {
   flex-flow: row nowrap;
 }
 .el-timeline {
-  width: 100%;
+
   display: block;
   margin: 20px 0;
   max-height: 80vh;
@@ -51,7 +51,7 @@ export default {
   position: absolute;
   top: 50%;
   left: 40%;
-  width: auto;
+  width: 100%;
   color: rgb(134, 134, 134);
 }
 </style>

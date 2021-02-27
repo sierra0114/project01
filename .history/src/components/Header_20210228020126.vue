@@ -282,7 +282,7 @@ export default {
     this.getLogState();
   },
   updated() {
-    this.getLogState(); //更新太频繁，浪费资源
+    // this.getLogState();
     // alert("登录状态：" + this.registed);
   },
   mounted() {

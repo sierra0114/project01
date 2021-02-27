@@ -61,7 +61,7 @@ export default {
       let readRequest; // 读写事务
 
       request = window.indexedDB.open("db"); // 连接数据库
-      request.onerror = () => {
+      request.onerror = (event) => {
         // alert('打开数据库失败！')
       };
 
@@ -146,7 +146,7 @@ export default {
   transition: all 0.3s ease;
 }
 .card-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .card-enter,.card-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
