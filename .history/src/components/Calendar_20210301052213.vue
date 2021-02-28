@@ -1,5 +1,7 @@
 <template>
-  <div>可以上下滚动/滑动，也可以按月份翻页的日历</div>
+  <div>
+    <el-calendar></el-calendar>
+  </div>
 </template>
 <script>
 export default {

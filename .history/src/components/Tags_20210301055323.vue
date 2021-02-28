@@ -33,16 +33,16 @@ export default {
     };
   },
   methods: {
-    showButton() {
+    showButton(index) {
       this.button = true;
     },
-    hideButton() {
+    hideButton(index) {
       this.button = false;
     },
   },
   computed: {
     resolveListToTags: function () {
-
+for()
       return true;
     },
   },
@@ -67,7 +67,7 @@ export default {
       transaction = db.transaction("info", "readwrite"); // 开启读写事务
       objStore = transaction.objectStore("info"); // 指定事务为‘info’对象仓库的事务
       readRequest = objStore.getAll(null);
-                        indexedDB应该根据索引的tag来查询
+
       readRequest.onerror = () => {
         // console.log('读写事务 失败！')
       };

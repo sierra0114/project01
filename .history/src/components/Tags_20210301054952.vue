@@ -26,24 +26,18 @@ export default {
   name: "Tags",
   data() {
     return {
-      infolist: [],
+      list: [],
       tags: [1, 2, 3, 4, 5],
       tagCount: 0,
       button: false,
     };
   },
   methods: {
-    showButton() {
+    showButton(index) {
       this.button = true;
     },
-    hideButton() {
+    hideButton(index) {
       this.button = false;
-    },
-  },
-  computed: {
-    resolveListToTags: function () {
-
-      return true;
     },
   },
   created() {
@@ -67,14 +61,14 @@ export default {
       transaction = db.transaction("info", "readwrite"); // 开启读写事务
       objStore = transaction.objectStore("info"); // 指定事务为‘info’对象仓库的事务
       readRequest = objStore.getAll(null);
-                        indexedDB应该根据索引的tag来查询
+
       readRequest.onerror = () => {
         // console.log('读写事务 失败！')
       };
       readRequest.onsuccess = () => {
         // console.log('读写事务 成功！已经获取到了list数据')
-        this.infolist = readRequest.result;
-        this.resolveListToTags;
+        this.list = readRequest.result;
+        this.resolveList();
       };
     };
   },

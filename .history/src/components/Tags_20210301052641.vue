@@ -1,9 +1,11 @@
 <template>
-  <div>可以上下滚动/滑动，也可以按月份翻页的日历</div>
+  <div>
+    <div v-for="(item, index) in tags"></div>
+  </div>
 </template>
 <script>
 export default {
-  name: "Calendar",
+  name: "Tags",
   data() {
     return {};
   },

@@ -85,7 +85,7 @@ export default {
       let readRequest; // 读写事务
 
       request = window.indexedDB.open("db"); // 连接数据库
-      request.onerror = () => {
+      request.onerror = (event) => {
         // 请求失败
         // console.log('连接数据库请求 失败 ！因为' + event)
       };
