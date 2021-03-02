@@ -22,15 +22,13 @@
   </div>
 </template>
 <script>
+import func from "../../vue-temp/vue-editor-bridge";
 export default {
   name: "Tags",
   data() {
     return {
       infolist: [],
-      allTags: [],
-
       tags: [1, 2, 3, 4, 5],
-      tag:{}
       tagCount: 0,
       button: false,
     };
@@ -42,33 +40,22 @@ export default {
     hideButton() {
       this.button = false;
     },
-    resolveListToTags() {
-      let uniqTag = this.getUniqTagTags;
-
-    },
   },
   computed: {
-    getUniqTagTags: function () {
-      let uniqTag;
+    resolveListToTags: function () {
+      if (this.getAllTags) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getAllTags: function () {
       let allTags = [];
-
       for (let index in this.infolist) {
-        let arr = this.infolist[index].tags;
-        allTags = [...allTags, ...arr];
+        this.infolist[index]
       }
 
-      for (let i = 0; i < allTags.length; i++) {
-        for (let j = i + 1; j < allTags.length; j++) {
-          if (allTags[i] === allTags[j]) {
-            //如果存在相等的两个tag
-            i++; //进入下一层i循环
-            j = i;
-          }
-        }
-        uniqTag.push(allTags[i]);
-        console.log(uniqTag);
-      }
-      return uniqTag;
+      return true;
     },
   },
   created() {

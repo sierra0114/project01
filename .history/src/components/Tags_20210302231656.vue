@@ -30,7 +30,6 @@ export default {
       allTags: [],
 
       tags: [1, 2, 3, 4, 5],
-      tag:{}
       tagCount: 0,
       button: false,
     };
@@ -44,7 +43,7 @@ export default {
     },
     resolveListToTags() {
       let uniqTag = this.getUniqTagTags;
-
+      
     },
   },
   computed: {

@@ -30,7 +30,6 @@ export default {
       allTags: [],
 
       tags: [1, 2, 3, 4, 5],
-      tag:{}
       tagCount: 0,
       button: false,
     };
@@ -44,19 +43,12 @@ export default {
     },
     resolveListToTags() {
       let uniqTag = this.getUniqTagTags;
-
     },
   },
   computed: {
     getUniqTagTags: function () {
       let uniqTag;
-      let allTags = [];
-
-      for (let index in this.infolist) {
-        let arr = this.infolist[index].tags;
-        allTags = [...allTags, ...arr];
-      }
-
+      let allTags = this.allTags;
       for (let i = 0; i < allTags.length; i++) {
         for (let j = i + 1; j < allTags.length; j++) {
           if (allTags[i] === allTags[j]) {
@@ -69,6 +61,14 @@ export default {
         console.log(uniqTag);
       }
       return uniqTag;
+    },
+    getAllTags: function () {
+      let allTags = [];
+      for (let index in this.infolist) {
+        let arr = this.infolist[index].tags;
+        allTags = [...allTags, ...arr];
+      }
+      return allTags;
     },
   },
   created() {

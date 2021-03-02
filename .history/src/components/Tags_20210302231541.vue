@@ -30,7 +30,6 @@ export default {
       allTags: [],
 
       tags: [1, 2, 3, 4, 5],
-      tag:{}
       tagCount: 0,
       button: false,
     };
@@ -44,7 +43,6 @@ export default {
     },
     resolveListToTags() {
       let uniqTag = this.getUniqTagTags;
-
     },
   },
   computed: {
@@ -56,7 +54,6 @@ export default {
         let arr = this.infolist[index].tags;
         allTags = [...allTags, ...arr];
       }
-
       for (let i = 0; i < allTags.length; i++) {
         for (let j = i + 1; j < allTags.length; j++) {
           if (allTags[i] === allTags[j]) {

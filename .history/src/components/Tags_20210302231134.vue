@@ -30,7 +30,6 @@ export default {
       allTags: [],
 
       tags: [1, 2, 3, 4, 5],
-      tag:{}
       tagCount: 0,
       button: false,
     };
@@ -43,32 +42,38 @@ export default {
       this.button = false;
     },
     resolveListToTags() {
-      let uniqTag = this.getUniqTagTags;
-
+      let allTags = this.getAllTags;
     },
   },
   computed: {
-    getUniqTagTags: function () {
-      let uniqTag;
+    resolveListToTags: function () {
+      if (this.getAllTags) {
+        let tag = [];
+        let allTags = this.allTags;
+        for (let i = 0; i < allTags.length; i++) {
+          for (let j = i + 1; j < allTags.length; j++) {
+            if (allTags[i] === allTags[j]) {
+              //如果存在相等的两个tag
+              i++; //进入下一层i循环
+              j = i;
+            }
+          }
+          tag.push(allTags[i]);
+          console.log(tag);
+        }
+        this.tags = tag;
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getAllTags: function () {
       let allTags = [];
-
       for (let index in this.infolist) {
         let arr = this.infolist[index].tags;
         allTags = [...allTags, ...arr];
       }
-
-      for (let i = 0; i < allTags.length; i++) {
-        for (let j = i + 1; j < allTags.length; j++) {
-          if (allTags[i] === allTags[j]) {
-            //如果存在相等的两个tag
-            i++; //进入下一层i循环
-            j = i;
-          }
-        }
-        uniqTag.push(allTags[i]);
-        console.log(uniqTag);
-      }
-      return uniqTag;
+      return allTags;
     },
   },
   created() {
