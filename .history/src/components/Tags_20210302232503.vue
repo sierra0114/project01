@@ -42,13 +42,13 @@ export default {
       this.button = false;
     },
     resolveListToTags() {
-      let uniqTag = this.getUniqTags;
+      let uniqTag = this.getUniqTagTags;
       this.tags = uniqTag;
     },
   },
   computed: {
     getUniqTags: function () {
-      let uniqTag = [];
+      let uniqTag;
       let allTags = [];
 
       for (let index in this.infolist) {
@@ -62,6 +62,7 @@ export default {
             //如果存在相等的两个tag
             i++; //进入下一层i循环
             j = i;
+            alert("1");
           }
         }
         uniqTag.push(allTags[i]);

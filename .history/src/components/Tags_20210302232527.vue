@@ -62,6 +62,7 @@ export default {
             //如果存在相等的两个tag
             i++; //进入下一层i循环
             j = i;
+            alert("1");
           }
         }
         uniqTag.push(allTags[i]);

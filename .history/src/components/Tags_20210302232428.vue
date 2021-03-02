@@ -42,14 +42,15 @@ export default {
       this.button = false;
     },
     resolveListToTags() {
-      let uniqTag = this.getUniqTags;
+      let uniqTag = this.getUniqTagTags;
       this.tags = uniqTag;
     },
   },
   computed: {
-    getUniqTags: function () {
-      let uniqTag = [];
+    getUniqTagTags: function () {
+      let uniqTag;
       let allTags = [];
+      alert("1");
 
       for (let index in this.infolist) {
         let arr = this.infolist[index].tags;

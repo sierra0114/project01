@@ -42,13 +42,13 @@ export default {
       this.button = false;
     },
     resolveListToTags() {
-      let uniqTag = this.getUniqTags;
+      let uniqTag = this.getUniqTagTags;
       this.tags = uniqTag;
     },
   },
   computed: {
-    getUniqTags: function () {
-      let uniqTag = [];
+    getUniqTagTags: function () {
+      let uniqTag;
       let allTags = [];
 
       for (let index in this.infolist) {
@@ -98,7 +98,8 @@ export default {
       readRequest.onsuccess = () => {
         // console.log('读写事务 成功！已经获取到了list数据')
         this.infolist = readRequest.result;
-        this.resolveListToTags();
+        this.resolveListToTags;
+        alert("1");
       };
     };
   },

@@ -8,7 +8,7 @@
     >
       <el-card style="text-align: left">
         <div slot="header" class="clearfix">
-          <span>{{ item }}</span>
+          <span>卡片名称</span>
           <el-button
             v-show="button"
             style="float: right; padding: 3px 0"
@@ -16,7 +16,7 @@
             >操作按钮</el-button
           >
         </div>
-        <div>事项数（{{ tag.tagCount }}）</div>
+        <div>事项数（{{ tagCount }}）</div>
       </el-card>
     </div>
   </div>
@@ -27,9 +27,10 @@ export default {
   data() {
     return {
       infolist: [],
+      allTags: [],
 
       tags: [1, 2, 3, 4, 5],
-      tag: { tagCount: 0, tagNamw: "" },
+      tag:{      tagCount: 0,tagNamw}
 
       button: false,
     };
@@ -42,13 +43,13 @@ export default {
       this.button = false;
     },
     resolveListToTags() {
-      let uniqTag = this.getUniqTags;
-      this.tags = uniqTag;
+      let uniqTag = this.getUniqTagTags;
+
     },
   },
   computed: {
-    getUniqTags: function () {
-      let uniqTag = [];
+    getUniqTagTags: function () {
+      let uniqTag;
       let allTags = [];
 
       for (let index in this.infolist) {
@@ -98,7 +99,7 @@ export default {
       readRequest.onsuccess = () => {
         // console.log('读写事务 成功！已经获取到了list数据')
         this.infolist = readRequest.result;
-        this.resolveListToTags();
+        this.resolveListToTags;
       };
     };
   },
