@@ -128,8 +128,8 @@ export default {
     },
   },
   watch: {
-    infolist: function () {
-      this.resolveListToTags();
+    infolist: {
+
     },
   },
   created() {

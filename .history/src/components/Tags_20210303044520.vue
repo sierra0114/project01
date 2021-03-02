@@ -127,13 +127,16 @@ export default {
       return true;
     },
   },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
-  },
+  watch:{
+    infolist:app.config.errorHandler = (err, vm, info) => {
+      // handle error
+    }
+  }
+  beforeCreate() {},
   created() {
     this.updateInfo;
+
+    this.resolveListToTags();
   },
   updated() {
     this.updateInfo;

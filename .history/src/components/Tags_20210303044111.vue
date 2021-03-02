@@ -127,16 +127,12 @@ export default {
       return true;
     },
   },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
-  },
   created() {
     this.updateInfo;
-  },
-  updated() {
-    this.updateInfo;
+    this.Vue.nextTick({
+      
+    })
+    this.resolveListToTags();
   },
 };
 </script>

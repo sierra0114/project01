@@ -124,19 +124,11 @@ export default {
           this.infolist = readRequest.result;
         };
       };
-      return true;
-    },
-  },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
+      return 
     },
   },
   created() {
-    this.updateInfo;
-  },
-  updated() {
-    this.updateInfo;
+    this.resolveListToTags();
   },
 };
 </script>

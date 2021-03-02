@@ -8,7 +8,7 @@
     >
       <el-card style="text-align: left">
         <div slot="header" class="clearfix">
-          <span>{{ item.tagNamw }}</span>
+          <span>{{ item }}</span>
           <el-button
             v-show="button"
             style="float: right; padding: 3px 0"
@@ -16,7 +16,7 @@
             >操作按钮</el-button
           >
         </div>
-        <div>事项数（{{ item.tagCount }}）</div>
+        <div>事项数（{{ tag.tagCount }}）</div>
       </el-card>
     </div>
   </div>
@@ -28,7 +28,7 @@ export default {
     return {
       infolist: [],
 
-      tags: [],
+      tags: [1, 2, 3, 4, 5],
       tag: { tagCount: 0, tagNamw: "" },
 
       button: false,
@@ -44,31 +44,20 @@ export default {
     resolveListToTags() {
       //把indolist里面的信息转化到tags中
       let uniqTag = this.getUniqTags;
-      let tagArr = [];
-
+      this.tags = uniqTag;
       for (let index in uniqTag) {
-        let temp = this.querryTag(uniqTag[index]);
-        let tag = {};
-        tag.tagNamw = uniqTag[index];
-        tag.tagCount = temp.length;
-        tag.infoArr = temp;
-        tagArr.push(tag);
+        this.querryTag(uniqTag[index]);
       }
-      this.tags = [...tagArr];
     },
     querryTag(tag) {
       //根据tag查找对应的事项
-      let temp = [];
+      let comm
       for (let i in this.infolist) {
         for (let j in this.infolist[i].tags) {
           if (this.infolist[i].tags[j] === tag) {
-            temp.push(this.infolist[i]);
-            break;
           }
         }
       }
-      console.log(temp);
-      return temp;
     },
   },
   computed: {
@@ -94,49 +83,38 @@ export default {
       }
       return uniqTag;
     },
-    updateInfo: function () {
-      let db; // 数据库对象
-      let objStore; // 对象仓库
-      let request; // 请求
-      let transaction; // 连接事务
-      let readRequest; // 读写事务
-
-      request = window.indexedDB.open("db"); // 连接数据库
-      request.onerror = () => {
-        // 请求失败
-        // console.log('连接数据库请求 失败 ！因为' + event)
-      };
-
-      request.onsuccess = (event) => {
-        // 请求成功
-        db = event.target.result;
-        // db=request.result  一样的效果
-        // console.log('连接数据库请求 成功 ')
-        transaction = db.transaction("info", "readwrite"); // 开启读写事务
-        objStore = transaction.objectStore("info"); // 指定事务为‘info’对象仓库的事务
-        readRequest = objStore.getAll(null);
-
-        readRequest.onerror = () => {
-          // console.log('读写事务 失败！')
-        };
-        readRequest.onsuccess = () => {
-          // console.log('读写事务 成功！已经获取到了list数据')
-          this.infolist = readRequest.result;
-        };
-      };
-      return true;
-    },
-  },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
   },
   created() {
-    this.updateInfo;
-  },
-  updated() {
-    this.updateInfo;
+    let db; // 数据库对象
+    let objStore; // 对象仓库
+    let request; // 请求
+    let transaction; // 连接事务
+    let readRequest; // 读写事务
+
+    request = window.indexedDB.open("db"); // 连接数据库
+    request.onerror = () => {
+      // 请求失败
+      // console.log('连接数据库请求 失败 ！因为' + event)
+    };
+
+    request.onsuccess = (event) => {
+      // 请求成功
+      db = event.target.result;
+      // db=request.result  一样的效果
+      // console.log('连接数据库请求 成功 ')
+      transaction = db.transaction("info", "readwrite"); // 开启读写事务
+      objStore = transaction.objectStore("info"); // 指定事务为‘info’对象仓库的事务
+      readRequest = objStore.getAll(null);
+
+      readRequest.onerror = () => {
+        // console.log('读写事务 失败！')
+      };
+      readRequest.onsuccess = () => {
+        // console.log('读写事务 成功！已经获取到了list数据')
+        this.infolist = readRequest.result;
+        this.resolveListToTags();
+      };
+    };
   },
 };
 </script>

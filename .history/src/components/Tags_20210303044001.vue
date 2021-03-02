@@ -94,49 +94,10 @@ export default {
       }
       return uniqTag;
     },
-    updateInfo: function () {
-      let db; // 数据库对象
-      let objStore; // 对象仓库
-      let request; // 请求
-      let transaction; // 连接事务
-      let readRequest; // 读写事务
-
-      request = window.indexedDB.open("db"); // 连接数据库
-      request.onerror = () => {
-        // 请求失败
-        // console.log('连接数据库请求 失败 ！因为' + event)
-      };
-
-      request.onsuccess = (event) => {
-        // 请求成功
-        db = event.target.result;
-        // db=request.result  一样的效果
-        // console.log('连接数据库请求 成功 ')
-        transaction = db.transaction("info", "readwrite"); // 开启读写事务
-        objStore = transaction.objectStore("info"); // 指定事务为‘info’对象仓库的事务
-        readRequest = objStore.getAll(null);
-
-        readRequest.onerror = () => {
-          // console.log('读写事务 失败！')
-        };
-        readRequest.onsuccess = () => {
-          // console.log('读写事务 成功！已经获取到了list数据')
-          this.infolist = readRequest.result;
-        };
-      };
-      return true;
-    },
-  },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
   },
   created() {
-    this.updateInfo;
-  },
-  updated() {
-    this.updateInfo;
+    this.resolveListToTags();
+   
   },
 };
 </script>

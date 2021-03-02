@@ -128,9 +128,7 @@ export default {
     },
   },
   watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
+    infolist: function () {},
   },
   created() {
     this.updateInfo;

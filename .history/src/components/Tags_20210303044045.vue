@@ -127,16 +127,8 @@ export default {
       return true;
     },
   },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
-  },
   created() {
-    this.updateInfo;
-  },
-  updated() {
-    this.updateInfo;
+    this.resolveListToTags();
   },
 };
 </script>

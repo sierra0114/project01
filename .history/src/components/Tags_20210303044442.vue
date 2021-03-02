@@ -127,13 +127,11 @@ export default {
       return true;
     },
   },
-  watch: {
-    infolist: function () {
-      this.resolveListToTags();
-    },
-  },
+  beforeCreate() {},
   created() {
     this.updateInfo;
+
+    this.resolveListToTags();
   },
   updated() {
     this.updateInfo;
