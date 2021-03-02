@@ -22,8 +22,9 @@
   </div>
 </template>
 <script>
-// import { store, mutations } from "../store";
-
+export const store = Vue.observable({
+  count: 0,
+});
 export default {
   name: "Tags",
   data() {

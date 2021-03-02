@@ -22,7 +22,6 @@
   </div>
 </template>
 <script>
-// import { store, mutations } from "../store";
 
 export default {
   name: "Tags",
