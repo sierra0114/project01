@@ -289,7 +289,7 @@
 </template>
 <script>
 import { Message } from "element-ui";
-import { mutations } from "../store";
+import { store, mutations } from "../store";
 
 export default {
   name: "Form",

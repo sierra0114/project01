@@ -42,7 +42,7 @@
 </template>
 <script>
 import router from "../router";
-import { mutations } from "../store";
+import { store, mutations } from "../store";
 
 export default {
   name: "SidbarCard",
@@ -83,7 +83,7 @@ export default {
           // console.log(this.$parent)
           this.$parent.getList(); // 更新sidbar视图
           // alert('删除成功！')
-          mutations.setUpdateFlag(true);
+          sto
         };
       };
     },
