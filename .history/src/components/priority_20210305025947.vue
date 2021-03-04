@@ -68,9 +68,6 @@ export default {
       let grey = [];
       let white = [];
       let infolist = this.infolist;
-      let colorList = [];
-      let tags = [];
-      let nameList = ["danger", "primary", "success", "warning", "info", ""];
 
       for (let index in infolist) {
         let item = infolist[index];
@@ -94,17 +91,7 @@ export default {
             white.push(item);
         }
       }
-
-      colorList = [red, blue, green, yellow, grey, white];
-
-      for (let i = 0; i < 6; i++) {
-        let tag = {};
-        tag.infoArr = colorList[i];
-        tag.name = nameList[i];
-        tag.count = colorList[i].length;
-        tags.push(tag);
-      }
-      this.tags = tags;
+      for
     },
     updateInfo() {
       let db; // 数据库对象

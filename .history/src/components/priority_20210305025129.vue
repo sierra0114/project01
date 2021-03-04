@@ -27,12 +27,12 @@ export default {
       infolist: [],
 
       tags: [
-        { infoArr: [], name: "danger", count: 0 },
-        { infoArr: [], name: "primary", count: 0 },
-        { infoArr: [], name: "success", count: 0 },
-        { infoArr: [], name: "warning", count: 0 },
-        { infoArr: [], name: "info", count: 0 },
-        { infoArr: [], name: "", count: 0 },
+        { name: "danger", count: 0 },
+        { name: "primary", count: 0 },
+        { name: "success", count: 0 },
+        { name: "warning", count: 0 },
+        { name: "info", count: 0 },
+        { name: "", count: 0 },
       ],
 
       oldClass: "",
@@ -61,50 +61,35 @@ export default {
     },
     resolveListToTags() {
       //把indolist里面的信息转化到tags中
-      let red = [];
-      let blue = [];
-      let green = [];
-      let yellow = [];
-      let grey = [];
-      let white = [];
       let infolist = this.infolist;
-      let colorList = [];
-      let tags = [];
-      let nameList = ["danger", "primary", "success", "warning", "info", ""];
 
       for (let index in infolist) {
-        let item = infolist[index];
-        switch (infolist[index].color) {
-          case "red":
-            red.push(item);
-            break;
-          case "blue":
-            blue.push(item);
-            break;
-          case "green":
-            green.push(item);
-            break;
-          case "yellow":
-            yellow.push(item);
-            break;
-          case "grey":
-            grey.push(item);
-            break;
-          case "":
-            white.push(item);
-        }
+        this.switchColor(infolist[index]);
       }
-
-      colorList = [red, blue, green, yellow, grey, white];
-
-      for (let i = 0; i < 6; i++) {
-        let tag = {};
-        tag.infoArr = colorList[i];
-        tag.name = nameList[i];
-        tag.count = colorList[i].length;
-        tags.push(tag);
+    },
+    switchColor(item) {
+let red
+      let color = item.color;
+      switch (color) {
+        case "red":
+          Class = "danger";
+          break;
+        case "blue":
+          Class = "primary";
+          break;
+        case "green":
+          Class = "success";
+          break;
+        case "yellow":
+          Class = "warning";
+          break;
+        case "grey":
+          Class = "info";
+          break;
+        case "":
+          Class = "";
       }
-      this.tags = tags;
+      return Class;
     },
     updateInfo() {
       let db; // 数据库对象

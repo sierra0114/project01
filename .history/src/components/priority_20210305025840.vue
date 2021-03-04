@@ -68,43 +68,10 @@ export default {
       let grey = [];
       let white = [];
       let infolist = this.infolist;
-      let colorList = [];
-      let tags = [];
-      let nameList = ["danger", "primary", "success", "warning", "info", ""];
 
       for (let index in infolist) {
-        let item = infolist[index];
-        switch (infolist[index].color) {
-          case "red":
-            red.push(item);
-            break;
-          case "blue":
-            blue.push(item);
-            break;
-          case "green":
-            green.push(item);
-            break;
-          case "yellow":
-            yellow.push(item);
-            break;
-          case "grey":
-            grey.push(item);
-            break;
-          case "":
-            white.push(item);
-        }
+        this.switchColor(infolist[index]);
       }
-
-      colorList = [red, blue, green, yellow, grey, white];
-
-      for (let i = 0; i < 6; i++) {
-        let tag = {};
-        tag.infoArr = colorList[i];
-        tag.name = nameList[i];
-        tag.count = colorList[i].length;
-        tags.push(tag);
-      }
-      this.tags = tags;
     },
     updateInfo() {
       let db; // 数据库对象

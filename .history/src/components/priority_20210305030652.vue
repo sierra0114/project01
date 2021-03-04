@@ -102,9 +102,8 @@ export default {
         tag.infoArr = colorList[i];
         tag.name = nameList[i];
         tag.count = colorList[i].length;
-        tags.push(tag);
+        tags.push
       }
-      this.tags = tags;
     },
     updateInfo() {
       let db; // 数据库对象

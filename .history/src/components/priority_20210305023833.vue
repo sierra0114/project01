@@ -10,31 +10,24 @@
         @click.native="handleClick(index)"
       >
         <div slot="header" class="clearfix">
-          <el-button :type="item.name" size="mini" circle></el-button>
+          <span>{{ item.tagNamw }}</span>
         </div>
-        <div class="count">事项数（{{ item.count }}）</div>
+        <div class="count">事项数（{{ item.tagCount }}）</div>
       </el-card>
     </div>
   </div>
 </template>
 <script>
 import { store, mutations } from "../store";
-// 把盒子先标上颜色，悬浮时颜色加深
+                          // 把盒子先标上颜色，悬浮时颜色加深
 export default {
   name: "Priority",
   data() {
     return {
       infolist: [],
 
-      tags: [
-        { infoArr: [], name: "danger", count: 0 },
-        { infoArr: [], name: "primary", count: 0 },
-        { infoArr: [], name: "success", count: 0 },
-        { infoArr: [], name: "warning", count: 0 },
-        { infoArr: [], name: "info", count: 0 },
-        { infoArr: [], name: "", count: 0 },
-      ],
-
+      tags: [{}，{}，{}{}],
+      
       oldClass: "",
     };
   },
@@ -61,50 +54,34 @@ export default {
     },
     resolveListToTags() {
       //把indolist里面的信息转化到tags中
-      let red = [];
-      let blue = [];
-      let green = [];
-      let yellow = [];
-      let grey = [];
-      let white = [];
-      let infolist = this.infolist;
-      let colorList = [];
-      let tags = [];
-      let nameList = ["danger", "primary", "success", "warning", "info", ""];
+      let uniqTag = this.getUniqTags;
+      let tagArr = [];
 
-      for (let index in infolist) {
-        let item = infolist[index];
-        switch (infolist[index].color) {
-          case "red":
-            red.push(item);
+      for (let index in uniqTag) {
+        let temp = this.querryTag(uniqTag[index]);
+        let tag = {};
+        tag.tagNamw = uniqTag[index];
+        tag.tagCount = temp.length;
+        tag.infoArr = temp;
+        tagArr.push(tag);
+      }
+      this.tags = [...tagArr];
+      this.$forceUpdate();
+      // alert("更新视图");
+    },
+    querryTag(tag) {
+      //根据tag查找对应的事项
+      let temp = [];
+      for (let i in this.infolist) {
+        for (let j in this.infolist[i].tags) {
+          if (this.infolist[i].tags[j] === tag) {
+            temp.push(this.infolist[i]);
             break;
-          case "blue":
-            blue.push(item);
-            break;
-          case "green":
-            green.push(item);
-            break;
-          case "yellow":
-            yellow.push(item);
-            break;
-          case "grey":
-            grey.push(item);
-            break;
-          case "":
-            white.push(item);
+          }
         }
       }
-
-      colorList = [red, blue, green, yellow, grey, white];
-
-      for (let i = 0; i < 6; i++) {
-        let tag = {};
-        tag.infoArr = colorList[i];
-        tag.name = nameList[i];
-        tag.count = colorList[i].length;
-        tags.push(tag);
-      }
-      this.tags = tags;
+      console.log(temp);
+      return temp;
     },
     updateInfo() {
       let db; // 数据库对象
@@ -144,6 +121,28 @@ export default {
   computed: {
     updateFlag() {
       return store.updateFlag;
+    },
+    getUniqTags: function () {
+      let uniqTag = [];
+      let allTags = [];
+
+      for (let index in this.infolist) {
+        let arr = this.infolist[index].tags;
+        allTags = [...allTags, ...arr];
+      }
+
+      for (let i = 0; i < allTags.length; i++) {
+        for (let j = i + 1; j < allTags.length; j++) {
+          if (allTags[i] === allTags[j]) {
+            //如果存在相等的两个tag
+            i++; //进入下一层i循环
+            j = i;
+          }
+        }
+        uniqTag.push(allTags[i]);
+        console.log(uniqTag);
+      }
+      return uniqTag;
     },
   },
   watch: {

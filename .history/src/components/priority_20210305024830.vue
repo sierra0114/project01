@@ -27,12 +27,12 @@ export default {
       infolist: [],
 
       tags: [
-        { infoArr: [], name: "danger", count: 0 },
-        { infoArr: [], name: "primary", count: 0 },
-        { infoArr: [], name: "success", count: 0 },
-        { infoArr: [], name: "warning", count: 0 },
-        { infoArr: [], name: "info", count: 0 },
-        { infoArr: [], name: "", count: 0 },
+        { name: "danger", count: 0 },
+        { name: "primary", count: 0 },
+        { name: "success", count: 0 },
+        { name: "warning", count: 0 },
+        { name: "info", count: 0 },
+        { name: "", count: 0 },
       ],
 
       oldClass: "",
@@ -61,50 +61,29 @@ export default {
     },
     resolveListToTags() {
       //把indolist里面的信息转化到tags中
-      let red = [];
-      let blue = [];
-      let green = [];
-      let yellow = [];
-      let grey = [];
-      let white = [];
       let infolist = this.infolist;
-      let colorList = [];
-      let tags = [];
-      let nameList = ["danger", "primary", "success", "warning", "info", ""];
+      let tagArr = [];
 
       for (let index in infolist) {
-        let item = infolist[index];
-        switch (infolist[index].color) {
-          case "red":
-            red.push(item);
+        this.switch
+      }
+      this.tags = [...tagArr];
+      this.$forceUpdate();
+      // alert("更新视图");
+    },
+    querryTag(tag) {
+      //根据tag查找对应的事项
+      let temp = [];
+      for (let i in this.infolist) {
+        for (let j in this.infolist[i].tags) {
+          if (this.infolist[i].tags[j] === tag) {
+            temp.push(this.infolist[i]);
             break;
-          case "blue":
-            blue.push(item);
-            break;
-          case "green":
-            green.push(item);
-            break;
-          case "yellow":
-            yellow.push(item);
-            break;
-          case "grey":
-            grey.push(item);
-            break;
-          case "":
-            white.push(item);
+          }
         }
       }
-
-      colorList = [red, blue, green, yellow, grey, white];
-
-      for (let i = 0; i < 6; i++) {
-        let tag = {};
-        tag.infoArr = colorList[i];
-        tag.name = nameList[i];
-        tag.count = colorList[i].length;
-        tags.push(tag);
-      }
-      this.tags = tags;
+      console.log(temp);
+      return temp;
     },
     updateInfo() {
       let db; // 数据库对象
