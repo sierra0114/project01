@@ -25,27 +25,7 @@
       </el-col>
     </el-row>
     <el-row class="view">
-      <div class="add">
-        <div class="add-svg">
-          <svg
-            t="1614887082898"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="2058"
-            width="128"
-            height="128"
-          >
-            <path
-              d="M880.15737 447.719128H575.934072V143.49583c0-35.915501-29.109546-65.025048-65.025048-65.025048s-65.025048 29.109546-65.025047 65.025048v304.223298H141.660679a65.025048 65.025048 0 0 0 0 130.050095h304.223298v304.223298c0 35.915501 29.109546 65.025048 65.025047 65.025048s65.025048-29.109546 65.025048-65.025048V577.769223h304.216073a65.025048 65.025048 0 0 0 65.025047-65.025047 65.010598 65.010598 0 0 0-65.017822-65.025048z"
-              fill="#ffffff"
-              p-id="2059"
-            ></path>
-          </svg>
-        </div>
-      </div>
-      <div class="text">新建一个事项</div>
+      <div class="add"></div>
       <router-view></router-view>
     </el-row>
   </div>
@@ -187,23 +167,10 @@ a:active {
 }
 .add {
   position: absolute;
-  top: 80px;
-  left: 40%;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  background-color: rgb(240, 240, 240);
-}
-.add-svg {
-  position: relative;
-  top: 35px;
-}
-.text {
-  position: absolute;
-  top: 300px;
-  left: 45%;
-  font-size: 18px;
-  color: #c0c4cc;
+  top:100px;
+  left:40%
+  width: 100px;
+  height: 100px;
+  background-color: rgb(226, 226, 226);
 }
 </style>

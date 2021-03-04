@@ -26,7 +26,7 @@
     </el-row>
     <el-row class="view">
       <div class="add">
-        <div class="add-svg">
+        <div class="add-in">
           <svg
             t="1614887082898"
             class="icon"
@@ -194,10 +194,6 @@ a:active {
   width: 200px;
   height: 200px;
   background-color: rgb(240, 240, 240);
-}
-.add-svg {
-  position: relative;
-  top: 35px;
 }
 .text {
   position: absolute;

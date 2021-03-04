@@ -195,10 +195,6 @@ a:active {
   height: 200px;
   background-color: rgb(240, 240, 240);
 }
-.add-svg {
-  position: relative;
-  top: 35px;
-}
 .text {
   position: absolute;
   top: 300px;

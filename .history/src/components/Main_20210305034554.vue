@@ -197,7 +197,7 @@ a:active {
 }
 .add-svg {
   position: relative;
-  top: 35px;
+  top: 20px;
 }
 .text {
   position: absolute;
