@@ -143,22 +143,18 @@ export default {
     },
   },
   watch: {
-    $route(to) {
+    $route(to,from) {
       console.log(to);
       if (to.name === "appMain") {
         this.condition = true;
       } else {
         this.condition = false;
       }
+      if(form.name===)
     },
+
   },
   created() {
-    if (this.$route.name === "appMain") {
-      this.condition = true;
-    } else {
-      this.condition = false;
-    }
-    console.log("main创建了");
     this.updatingToday();
     this.getEventsCount();
   },

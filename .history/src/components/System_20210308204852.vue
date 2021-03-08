@@ -10,10 +10,6 @@
         :color="activity.color"
         :size="activity.size"
         :timestamp="activity.timestamp"
-        :ref="index"
-        @mouseover.native="show(index)"
-        @mouseout.native="hide(index)"
-        @click.native="handleClick(index)"
       >
         {{ activity.content }}
       </el-timeline-item>
@@ -21,8 +17,6 @@
   </div>
 </template>
 <script>
-import { mutations, store } from "../store";
-
 export default {
   name: "System",
   data() {
@@ -45,7 +39,7 @@ export default {
         // console.log('连接数据库请求 失败 ！因为' + event)
       };
 
-      request.onsuccess = (event) => {
+      request.onsuccess = (event) => { 
         // 请求成功
         db = event.target.result;
         // db=request.result  一样的效果
@@ -163,23 +157,6 @@ export default {
         }
       }
     },
-    show(index) {
-      let oldClass = this.$refs[index][0].$el.className;
-      let newClass = oldClass + " show";
-      this.oldClass = this.$refs[index][0].$el.className;
-      this.$refs[index][0].$el.className = newClass;
-      // console.log(this.$refs[index][0].$el.className);
-    },
-    hide(index) {
-      this.$refs[index][0].$el.className = this.oldClass;
-      // console.log(this.$refs[index][0].$el.className);
-    },
-    handleClick(index) {
-      let info = this.systemList[index];
-      store.openFormFlag = true;
-      mutations.setFormInfo(info);
-      //   alert('点击了')
-    },
   },
   created() {
     this.getList();
@@ -214,12 +191,5 @@ export default {
   left: 40%;
   width: auto;
   color: rgb(134, 134, 134);
-}
-.show {
-  cursor: pointer;
-  background: rgb(245, 245, 245);
-}
-.hide {
-  cursor: pointer;
 }
 </style>

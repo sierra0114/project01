@@ -10,7 +10,6 @@
         :color="activity.color"
         :size="activity.size"
         :timestamp="activity.timestamp"
-        :ref="index"
         @mouseover.native="show(index)"
         @mouseout.native="hide(index)"
         @click.native="handleClick(index)"
@@ -175,7 +174,7 @@ export default {
       // console.log(this.$refs[index][0].$el.className);
     },
     handleClick(index) {
-      let info = this.systemList[index];
+      let info = this.rowList[index];
       store.openFormFlag = true;
       mutations.setFormInfo(info);
       //   alert('点击了')

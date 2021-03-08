@@ -153,11 +153,6 @@ export default {
     },
   },
   created() {
-    if (this.$route.name === "appMain") {
-      this.condition = true;
-    } else {
-      this.condition = false;
-    }
     console.log("main创建了");
     this.updatingToday();
     this.getEventsCount();

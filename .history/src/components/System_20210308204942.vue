@@ -10,7 +10,6 @@
         :color="activity.color"
         :size="activity.size"
         :timestamp="activity.timestamp"
-        :ref="index"
         @mouseover.native="show(index)"
         @mouseout.native="hide(index)"
         @click.native="handleClick(index)"
@@ -21,8 +20,6 @@
   </div>
 </template>
 <script>
-import { mutations, store } from "../store";
-
 export default {
   name: "System",
   data() {
@@ -175,7 +172,7 @@ export default {
       // console.log(this.$refs[index][0].$el.className);
     },
     handleClick(index) {
-      let info = this.systemList[index];
+      let info = this.rowList[index];
       store.openFormFlag = true;
       mutations.setFormInfo(info);
       //   alert('点击了')
@@ -214,12 +211,5 @@ export default {
   left: 40%;
   width: auto;
   color: rgb(134, 134, 134);
-}
-.show {
-  cursor: pointer;
-  background: rgb(245, 245, 245);
-}
-.hide {
-  cursor: pointer;
 }
 </style>

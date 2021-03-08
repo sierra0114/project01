@@ -10,7 +10,6 @@
         :color="activity.color"
         :size="activity.size"
         :timestamp="activity.timestamp"
-        :ref="index"
         @mouseover.native="show(index)"
         @mouseout.native="hide(index)"
         @click.native="handleClick(index)"
