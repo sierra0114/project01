@@ -67,7 +67,6 @@ export default {
       eventsCountExpired: 0,
 
       thisMonth: 0,
-      condition: true,
     };
   },
   components: {},
@@ -140,16 +139,6 @@ export default {
           // alert(list.length)
         };
       };
-    },
-  },
-  watch: {
-    $route(to) {
-      console.log(to);
-      if (to.name === "appMain") {
-        this.condition = true;
-      } else {
-        this.condition = false;
-      }
     },
   },
   created() {

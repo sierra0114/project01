@@ -147,8 +147,6 @@ export default {
       console.log(to);
       if (to.name === "appMain") {
         this.condition = true;
-      } else {
-        this.condition = false;
       }
     },
   },

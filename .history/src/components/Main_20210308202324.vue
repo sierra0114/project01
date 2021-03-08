@@ -25,7 +25,7 @@
       </el-col>
     </el-row>
     <el-row class="view">
-      <div v-show="condition" class="add" @click="openForm">
+      <div class="add" @click="openForm">
         <div class="add-svg">
           <svg
             t="1614887082898"
@@ -44,8 +44,8 @@
             ></path>
           </svg>
         </div>
-        <div class="text">新建一个事项</div>
       </div>
+      <div class="text">新建一个事项</div>
       <router-view></router-view>
     </el-row>
   </div>
@@ -67,7 +67,6 @@ export default {
       eventsCountExpired: 0,
 
       thisMonth: 0,
-      condition: true,
     };
   },
   components: {},
@@ -75,8 +74,8 @@ export default {
     openForm() {
       if (store.openFormFlag === false) {
         mutations.setFormFlag(true);
-      } else {
-        mutations.setFormFlag(false);
+      }else{
+        mutations.set
       }
     },
     toToday() {
@@ -140,16 +139,6 @@ export default {
           // alert(list.length)
         };
       };
-    },
-  },
-  watch: {
-    $route(to) {
-      console.log(to);
-      if (to.name === "appMain") {
-        this.condition = true;
-      } else {
-        this.condition = false;
-      }
     },
   },
   created() {
@@ -219,10 +208,11 @@ a:active {
   top: 35px;
 }
 .text {
-  top: -20%;
-  left: 25%;
   position: absolute;
+  top: 300px;
+  left: 45%;
   font-size: 18px;
   color: #c0c4cc;
+  cursor: normal;
 }
 </style>

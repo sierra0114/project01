@@ -67,7 +67,6 @@ export default {
       eventsCountExpired: 0,
 
       thisMonth: 0,
-      condition: true,
     };
   },
   components: {},
@@ -141,17 +140,11 @@ export default {
         };
       };
     },
-  },
-  watch: {
-    $route(to) {
-      console.log(to);
-      if (to.name === "appMain") {
-        this.condition = true;
-      } else {
-        this.condition = false;
-      }
-    },
-  },
+  },watch:{
+  $route(to,from){
+    console.log(to);
+  }
+  }
   created() {
     this.updatingToday();
     this.getEventsCount();

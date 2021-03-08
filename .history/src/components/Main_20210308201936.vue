@@ -25,27 +25,12 @@
       </el-col>
     </el-row>
     <el-row class="view">
-      <div v-show="condition" class="add" @click="openForm">
+      <div class="add">
         <div class="add-svg">
-          <svg
-            t="1614887082898"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="2058"
-            width="128"
-            height="128"
-          >
-            <path
-              d="M880.15737 447.719128H575.934072V143.49583c0-35.915501-29.109546-65.025048-65.025048-65.025048s-65.025048 29.109546-65.025047 65.025048v304.223298H141.660679a65.025048 65.025048 0 0 0 0 130.050095h304.223298v304.223298c0 35.915501 29.109546 65.025048 65.025047 65.025048s65.025048-29.109546 65.025048-65.025048V577.769223h304.216073a65.025048 65.025048 0 0 0 65.025047-65.025047 65.010598 65.010598 0 0 0-65.017822-65.025048z"
-              fill="#ffffff"
-              p-id="2059"
-            ></path>
-          </svg>
+
         </div>
-        <div class="text">新建一个事项</div>
       </div>
+      <div class="text">新建一个事项</div>
       <router-view></router-view>
     </el-row>
   </div>
@@ -53,7 +38,6 @@
 
 <script>
 import router from "../router";
-import { store, mutations } from "../store";
 
 export default {
   name: "Main",
@@ -67,18 +51,10 @@ export default {
       eventsCountExpired: 0,
 
       thisMonth: 0,
-      condition: true,
     };
   },
   components: {},
   methods: {
-    openForm() {
-      if (store.openFormFlag === false) {
-        mutations.setFormFlag(true);
-      } else {
-        mutations.setFormFlag(false);
-      }
-    },
     toToday() {
       router.push({
         name: "calendar",
@@ -140,16 +116,6 @@ export default {
           // alert(list.length)
         };
       };
-    },
-  },
-  watch: {
-    $route(to) {
-      console.log(to);
-      if (to.name === "appMain") {
-        this.condition = true;
-      } else {
-        this.condition = false;
-      }
     },
   },
   created() {
@@ -219,10 +185,11 @@ a:active {
   top: 35px;
 }
 .text {
-  top: -20%;
-  left: 25%;
   position: absolute;
+  top: 300px;
+  left: 45%;
   font-size: 18px;
   color: #c0c4cc;
+  cursor:normal
 }
 </style>

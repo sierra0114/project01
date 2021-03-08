@@ -25,7 +25,7 @@
       </el-col>
     </el-row>
     <el-row class="view">
-      <div v-show="condition" class="add" @click="openForm">
+      <div class="add" @click="openForm">
         <div class="add-svg">
           <svg
             t="1614887082898"
@@ -67,7 +67,6 @@ export default {
       eventsCountExpired: 0,
 
       thisMonth: 0,
-      condition: true,
     };
   },
   components: {},
@@ -140,16 +139,6 @@ export default {
           // alert(list.length)
         };
       };
-    },
-  },
-  watch: {
-    $route(to) {
-      console.log(to);
-      if (to.name === "appMain") {
-        this.condition = true;
-      } else {
-        this.condition = false;
-      }
     },
   },
   created() {
