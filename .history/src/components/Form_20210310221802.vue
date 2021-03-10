@@ -346,7 +346,7 @@ export default {
         textarea4: "", // 地点
         textarea5: "", // 子任务 submission
 
-        timeValue: [new Date(), new Date()], // 起止时间
+        timeValue: [], // 起止时间
 
         // tag属性和变量
         tag: { inputVisible: false, inputValue: "", dynamicTags: [] },
@@ -505,6 +505,7 @@ export default {
       timeTo.setDate(timeTo.getDate() + 1);
       // console.log('33333333333')
       // console.log(timeTo)
+      if(form.timeValue===null)
       info.time =
         this.form.timeValue.length === 0
           ? [timeFrom, timeTo]

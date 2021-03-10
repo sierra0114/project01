@@ -346,7 +346,7 @@ export default {
         textarea4: "", // 地点
         textarea5: "", // 子任务 submission
 
-        timeValue: [new Date(), new Date()], // 起止时间
+        timeValue: [new date(), new Date()], // 起止时间
 
         // tag属性和变量
         tag: { inputVisible: false, inputValue: "", dynamicTags: [] },
