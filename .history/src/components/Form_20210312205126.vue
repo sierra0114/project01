@@ -485,8 +485,12 @@ export default {
     },
     getinfo() {
       let info = {};
-      let now = new Date();
+      let timeFrom;
+      let timeTo;
+      let now;
+      now = new Date();
       if (this.firstTime === true) {
+        //判断是否是第一次打开form
         // 如果是新建事项
         info.key = now.getTime(); // 新加属性-唯一的key
       } else {
@@ -500,15 +504,17 @@ export default {
       info.summaryText = this.form.textarea3;
       info.positionText = this.form.textarea4;
       info.submissionText = this.form.textarea5;
-      let timeFrom = now;
-      let timeTo = new Date();
+      timeFrom = now;
+      timeTo = new Date();
       timeTo.setDate(timeTo.getDate() + 1);
       // console.log('33333333333')
       // console.log(timeTo)
-      info.time =
-        this.form.timeValue.length === 0
-          ? [timeFrom, timeTo]
-          : this.form.timeValue;
+      if (this.form.timeValue === null && this.form.timeValue.length === 0) {
+        info.time = [timeFrom, timeTo];
+      } else {
+        info.time = this.form.timeValue;
+      }
+
       // 事项的起止时间
       info.tags = this.form.tag.dynamicTags;
       console.log("getinfo()获取到的data中的info：");
@@ -796,9 +802,6 @@ export default {
     openFormFlag() {
       return store.openFormFlag;
     },
-    createFormFlag() {
-      return store.createFormFlag;
-    },
     formInfo() {
       return store.formInfo;
     },
@@ -807,12 +810,6 @@ export default {
     openFormFlag: function () {
       if (this.openFormFlag === true) {
         this.open(this.formInfo);
-      }
-    },
-    createFormFlag: function () {
-      if (this.createFormFlag === true) {
-        this.drawer = true;
-        mutations.setCreateFlag(false);
       }
     },
   },

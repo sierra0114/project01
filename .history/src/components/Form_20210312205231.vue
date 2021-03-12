@@ -346,7 +346,7 @@ export default {
         textarea4: "", // 地点
         textarea5: "", // 子任务 submission
 
-        timeValue: [], // 起止时间
+        timeValue: [new date], // 起止时间
 
         // tag属性和变量
         tag: { inputVisible: false, inputValue: "", dynamicTags: [] },
@@ -796,9 +796,6 @@ export default {
     openFormFlag() {
       return store.openFormFlag;
     },
-    createFormFlag() {
-      return store.createFormFlag;
-    },
     formInfo() {
       return store.formInfo;
     },
@@ -807,12 +804,6 @@ export default {
     openFormFlag: function () {
       if (this.openFormFlag === true) {
         this.open(this.formInfo);
-      }
-    },
-    createFormFlag: function () {
-      if (this.createFormFlag === true) {
-        this.drawer = true;
-        mutations.setCreateFlag(false);
       }
     },
   },

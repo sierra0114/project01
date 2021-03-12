@@ -485,8 +485,12 @@ export default {
     },
     getinfo() {
       let info = {};
-      let now = new Date();
+      let timeFrom;
+      let timeTo;
+      let now;
+      now = new Date();
       if (this.firstTime === true) {
+        //  判断是否是第一次打开form
         // 如果是新建事项
         info.key = now.getTime(); // 新加属性-唯一的key
       } else {
@@ -500,11 +504,10 @@ export default {
       info.summaryText = this.form.textarea3;
       info.positionText = this.form.textarea4;
       info.submissionText = this.form.textarea5;
-      let timeFrom = now;
-      let timeTo = new Date();
+      timeFrom = now;
+      timeTo = new Date();
       timeTo.setDate(timeTo.getDate() + 1);
       // console.log('33333333333')
-      // console.log(timeTo)
       info.time =
         this.form.timeValue.length === 0
           ? [timeFrom, timeTo]
@@ -514,13 +517,13 @@ export default {
       console.log("getinfo()获取到的data中的info：");
       console.log(info);
       this.info = info;
+      return info;
     },
     // 保存数据info并将info传递给sidbar
     save() {
       let info;
 
-      this.getinfo();
-      info = this.info;
+      info = this.getinfo();
 
       if (info) {
         // console.log(info)
@@ -775,6 +778,7 @@ export default {
     /// /////////////////////           提醒-开始           ///////////////////////////////
     // ------------------------         改变颜色-结束          ----------------------
     open(info) {
+      //已存在的info用form打开
       console.log(info);
       this.reInfo = info;
       this.firstTime = false;
@@ -796,11 +800,11 @@ export default {
     openFormFlag() {
       return store.openFormFlag;
     },
-    createFormFlag() {
-      return store.createFormFlag;
-    },
     formInfo() {
       return store.formInfo;
+    },
+    createFormFlag() {
+      return store.createFormFlag;
     },
   },
   watch: {
@@ -811,8 +815,7 @@ export default {
     },
     createFormFlag: function () {
       if (this.createFormFlag === true) {
-        this.drawer = true;
-        mutations.setCreateFlag(false);
+        this.save();
       }
     },
   },

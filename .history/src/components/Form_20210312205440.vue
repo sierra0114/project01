@@ -796,9 +796,9 @@ export default {
     openFormFlag() {
       return store.openFormFlag;
     },
-    createFormFlag() {
-      return store.createFormFlag;
-    },
+    createFormFlag(){
+      return store.createFormFlag
+    }
     formInfo() {
       return store.formInfo;
     },
@@ -807,12 +807,6 @@ export default {
     openFormFlag: function () {
       if (this.openFormFlag === true) {
         this.open(this.formInfo);
-      }
-    },
-    createFormFlag: function () {
-      if (this.createFormFlag === true) {
-        this.drawer = true;
-        mutations.setCreateFlag(false);
       }
     },
   },

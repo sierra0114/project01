@@ -812,7 +812,7 @@ export default {
     createFormFlag: function () {
       if (this.createFormFlag === true) {
         this.drawer = true;
-        mutations.setCreateFlag(false);
+        mutations.set
       }
     },
   },

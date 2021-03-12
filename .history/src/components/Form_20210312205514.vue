@@ -809,12 +809,9 @@ export default {
         this.open(this.formInfo);
       }
     },
-    createFormFlag: function () {
-      if (this.createFormFlag === true) {
-        this.drawer = true;
-        mutations.setCreateFlag(false);
-      }
-    },
+    createFormFlag:function(){
+      if(this.createFormFlag===true)
+    }
   },
 };
 </script>

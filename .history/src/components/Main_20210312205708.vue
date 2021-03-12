@@ -76,7 +76,7 @@ export default {
       if (store.createFormFlag === false) {
         mutations.setCreateFlag(true);
       } else {
-        mutations.setCreateFlag(false);
+        mutations.setFormFlag(false);
       }
     },
     toToday() {
