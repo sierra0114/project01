@@ -517,13 +517,13 @@ export default {
       console.log("getinfo()获取到的data中的info：");
       console.log(info);
       this.info = info;
-      return info;
     },
     // 保存数据info并将info传递给sidbar
     save() {
       let info;
 
-      info = this.getinfo();
+      this.getinfo();
+      info = this.info;
 
       if (info) {
         // console.log(info)
@@ -804,7 +804,7 @@ export default {
       return store.formInfo;
     },
     createFormFlag() {
-      return store.createFormFlag;
+      return store.createFormFlag;;
     },
   },
   watch: {
@@ -815,7 +815,7 @@ export default {
     },
     createFormFlag: function () {
       if (this.createFormFlag === true) {
-        this.save();
+        this.getinfo();
       }
     },
   },

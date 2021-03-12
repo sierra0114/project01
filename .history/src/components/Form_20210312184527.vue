@@ -488,9 +488,8 @@ export default {
       let timeFrom;
       let timeTo;
       let now;
-      now = new Date();
+      let now = new Date();
       if (this.firstTime === true) {
-        //  判断是否是第一次打开form
         // 如果是新建事项
         info.key = now.getTime(); // 新加属性-唯一的key
       } else {
@@ -508,6 +507,7 @@ export default {
       timeTo = new Date();
       timeTo.setDate(timeTo.getDate() + 1);
       // console.log('33333333333')
+      // console.log(timeTo)
       info.time =
         this.form.timeValue.length === 0
           ? [timeFrom, timeTo]
@@ -517,13 +517,13 @@ export default {
       console.log("getinfo()获取到的data中的info：");
       console.log(info);
       this.info = info;
-      return info;
     },
     // 保存数据info并将info传递给sidbar
     save() {
       let info;
 
-      info = this.getinfo();
+      this.getinfo();
+      info = this.info;
 
       if (info) {
         // console.log(info)
@@ -778,7 +778,6 @@ export default {
     /// /////////////////////           提醒-开始           ///////////////////////////////
     // ------------------------         改变颜色-结束          ----------------------
     open(info) {
-      //已存在的info用form打开
       console.log(info);
       this.reInfo = info;
       this.firstTime = false;
@@ -803,19 +802,11 @@ export default {
     formInfo() {
       return store.formInfo;
     },
-    createFormFlag() {
-      return store.createFormFlag;
-    },
   },
   watch: {
     openFormFlag: function () {
       if (this.openFormFlag === true) {
         this.open(this.formInfo);
-      }
-    },
-    createFormFlag: function () {
-      if (this.createFormFlag === true) {
-        this.save();
       }
     },
   },

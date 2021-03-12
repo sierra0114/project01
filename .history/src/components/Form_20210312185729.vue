@@ -516,7 +516,7 @@ export default {
       info.tags = this.form.tag.dynamicTags;
       console.log("getinfo()获取到的data中的info：");
       console.log(info);
-      this.info = info;
+      
       return info;
     },
     // 保存数据info并将info传递给sidbar

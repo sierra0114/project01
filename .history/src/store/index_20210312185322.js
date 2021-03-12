@@ -3,7 +3,7 @@ import Vue from "vue";
 export const store = Vue.observable({
   updateFlag: false,
   openFormFlag: false,
-  createFormFlag:false,
+  create
   formInfo: {}
 });
 export const mutations = {
@@ -16,9 +16,6 @@ export const mutations = {
   },
   setFormInfo(info) {
     store.formInfo = info;
-  },
-  setCreateFlag(flag){
-    store.createFormFlag=flag;
   }
 };
 

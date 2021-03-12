@@ -16,8 +16,8 @@ export const mutations = {
   },
   setFormInfo(info) {
     store.formInfo = info;
-  },
-  setCreateFlag(flag){
+  }
+  setCreateFlag(){
     store.createFormFlag=flag;
   }
 };

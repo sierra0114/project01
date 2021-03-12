@@ -72,7 +72,7 @@ export default {
   },
   components: {},
   methods: {
-    createForm() {
+    openForm() {
       if (store.openFormFlag === false) {
         mutations.setFormFlag(true);
       } else {
