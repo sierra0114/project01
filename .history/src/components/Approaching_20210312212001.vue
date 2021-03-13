@@ -60,7 +60,7 @@ export default {
         // console.log('连接数据库请求 失败 ！因为' + event)
       };
 
-      request.onsuccess = (event) => {
+      request.onsuccess = () => {
         // 请求成功
         db = event.target.result;
         // db=request.result  一样的效果
@@ -200,11 +200,11 @@ export default {
       //   alert('点击了')
     },
   },
-  watch: {
-    nothing: function () {
-      console.log(this.nothing);
-    },
-  },
+  watch:{
+    nothing:function(){
+      console.log(this)
+    }
+  }
   created() {
     this.getList();
   },
