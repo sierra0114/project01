@@ -22,14 +22,14 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-        </el-col> 
+        </el-col>
       </el-row>
     </div>
 
     <div class="empty"></div>
     <div class="cards" v-if="!isReverse">
       <SidbarCard
-        v-for="item in this.resovedListReverse"
+        v-for="item in this.resovedList"
         :key="item.reKey"
         :info="item"
         @openForm-between="passThisToForm"
@@ -38,7 +38,7 @@
     </div>
     <div class="cards" v-else>
       <SidbarCard
-        v-for="item in this.resovedList"
+        v-for="item in this.resovedListReverse"
         :key="item.reKey"
         :info="item"
         @openForm-between="passThisToForm"

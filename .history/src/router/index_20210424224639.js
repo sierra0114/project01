@@ -55,7 +55,7 @@ const routes = [{
       path: '/tags',
       component: Tags
     }, {
-      name: 'detail',
+      name: 'sameTag',
       path: '/detail',
       component: SameTag
     },

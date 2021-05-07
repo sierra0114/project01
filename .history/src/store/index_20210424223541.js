@@ -14,10 +14,10 @@ export const mutations = {
   setFormFlag(flag) {//设置打开表单状态
     store.openFormFlag = flag;
   },
-  setFormInfo(info) {//设置表单信息-info对象
+  setFormInfo(info) {//设置chaungj
     store.formInfo = info;
   },
-  setCreateFlag(flag){//设置创建表单状态
+  setCreateFlag(flag){
     store.createFormFlag=flag;
   }
 };

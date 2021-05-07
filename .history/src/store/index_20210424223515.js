@@ -7,17 +7,17 @@ export const store = Vue.observable({
   formInfo: {}//表单信息-info对象
 });
 export const mutations = {
-  setUpdateFlag(flag) {//设置更新状态
+  setUpdateFlag(flag) {//设置更新
     store.updateFlag = flag;
     //   alert('flag:'+store.updateFlag)
   },
-  setFormFlag(flag) {//设置打开表单状态
+  setFormFlag(flag) {
     store.openFormFlag = flag;
   },
-  setFormInfo(info) {//设置表单信息-info对象
+  setFormInfo(info) {
     store.formInfo = info;
   },
-  setCreateFlag(flag){//设置创建表单状态
+  setCreateFlag(flag){
     store.createFormFlag=flag;
   }
 };

@@ -23,8 +23,7 @@
 //              time: []           }
 export default dataBase
 function dataBase () {
-  let defaultObj = { 
-    color: '', // 放入初始化信息
+  let defaultObj = { color: '', // 放入初始化信息
     mainText: '欢迎使用日程表！下方的↓颜色按钮↓会更换事项的优先级颜色，蓝色为默认优先级。',
     remarkText: '这里可以输入对事项的备注',
     summaryText: '这里输入对事项的总结',
